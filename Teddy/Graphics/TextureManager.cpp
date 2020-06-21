@@ -25,6 +25,9 @@
 #include "Teddy/TeddyConfig.h"
 #include "Teddy/Graphics/TextureManager.h"
 #include "Teddy/SysSupport/Messages.h"
+
+#include <stdlib.h>
+
 using namespace Teddy::SysSupport;
 
 

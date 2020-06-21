@@ -189,7 +189,7 @@ public:
 	TVector<T> rotate( const T tAngle, const Vector &n ) const {
 		T cosinus = (T)cos( tAngle );
 		T sininus = (T)sin( tAngle );
-		return TVector<T>(*this * tCos + ((n * *this) * (1 - tCos)) * n + (*this ^ n) * tSin);
+		return TVector<T>(*this * cosinus + ((n * *this) * (1 - cosinus)) * n + (*this ^ n) * sininus);
 	}
 };
 

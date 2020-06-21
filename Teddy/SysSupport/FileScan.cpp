@@ -35,6 +35,8 @@
 #endif
 #endif
 
+#include <string.h>
+#include <stdlib.h>
 
 namespace Teddy      {
 namespace SysSupport {

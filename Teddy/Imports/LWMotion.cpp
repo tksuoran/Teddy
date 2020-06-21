@@ -29,6 +29,8 @@
 #include "Teddy/Imports/LWChannelEnvelope.h"
 #include "Teddy/Imports/LWMotion.h"
 
+#include <stdlib.h>
+
 
 namespace Teddy   {
 namespace Imports {

@@ -27,6 +27,7 @@
 
 
 #include "Teddy/Application/BaseRoot.h"
+#include "Teddy/MixIn/Options.h"
 
 
 //  Forward declarations

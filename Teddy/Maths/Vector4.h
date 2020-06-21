@@ -138,7 +138,7 @@ public:
 	//  Magnitude/normalize methods
 	T    magnitudeSquared() const { return v[0]*v[0] + v[1]*v[1] + v[2]*v[2] + v[3]*v[3]; }
 	T    magnitude       () const { return (T)sqrt( magnitudeSquared() ); }
-	void normalize       ()       { *this /= Magnitude(); }
+	void normalize       ()       { *this /= magnitude(); }
 };
 
 

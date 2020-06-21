@@ -83,7 +83,7 @@ public:
 		//		TRACE("CMemoryBlock::Init() allocating %d bytes.\n", nElements * nElementSize);
 		free_stack   = new void *[elements];
 		for( free_position = 0; free_position < elements; free_position++ ){
-			free_stack[free_position] = (void *)( (int)pool + free_position * element_size );
+			free_stack[free_position] = (void *)( pool + free_position * element_size );
 		}
 	}
 

@@ -39,10 +39,10 @@ namespace Maths {
 template <typename T> class TCrossVector4 : public TVector4<T> {
 public:
 	TCrossVector4( const TVector4<T> &r, const TVector4<T> &s, const TVector4<T> &t ){
-		v[0] = r[1]*s[2]*t[3] + r[2]*s[3]*t[1] + r[3]*s[1]*t[2] - r[1]*s[3]*t[2] - r[2]*s[1]*t[3] - r[3]*s[2]*t[1];
-		v[1] = r[0]*s[3]*t[2] + r[2]*s[0]*t[3] + r[3]*s[2]*t[0] - r[0]*s[2]*t[3] - r[2]*s[3]*t[0] - r[3]*s[0]*t[2];
-		v[2] = r[0]*s[1]*t[3] + r[1]*s[3]*t[0] + r[3]*s[0]*t[1] - r[0]*s[3]*t[1] - r[1]*s[0]*t[3] - r[3]*s[1]*t[0];
-		v[3] = r[0]*s[2]*t[1] + r[1]*s[0]*t[2] + r[2]*s[1]*t[0] - r[0]*s[1]*t[2] - r[1]*s[2]*t[0] - r[2]*s[0]*t[1];
+		TVector4<T>::v[0] = r[1]*s[2]*t[3] + r[2]*s[3]*t[1] + r[3]*s[1]*t[2] - r[1]*s[3]*t[2] - r[2]*s[1]*t[3] - r[3]*s[2]*t[1];
+		TVector4<T>::v[1] = r[0]*s[3]*t[2] + r[2]*s[0]*t[3] + r[3]*s[2]*t[0] - r[0]*s[2]*t[3] - r[2]*s[3]*t[0] - r[3]*s[0]*t[2];
+		TVector4<T>::v[2] = r[0]*s[1]*t[3] + r[1]*s[3]*t[0] + r[3]*s[0]*t[1] - r[0]*s[3]*t[1] - r[1]*s[0]*t[3] - r[3]*s[1]*t[0];
+		TVector4<T>::v[3] = r[0]*s[2]*t[1] + r[1]*s[0]*t[2] + r[2]*s[1]*t[0] - r[0]*s[1]*t[2] - r[1]*s[2]*t[0] - r[2]*s[0]*t[1];
 	}
 };
 
