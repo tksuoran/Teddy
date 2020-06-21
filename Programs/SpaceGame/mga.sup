@@ -1,0 +1,25 @@
+{
+  /usr/X11R6/lib/modules/dri/mga_dri.so
+  Value4
+  obj:/usr/X11R6/lib/modules/dri/mga_dri.so
+}
+{
+  /usr/X11R6/lib/modules/dri/mga_dri.so
+  Addr4
+  obj:/usr/X11R6/lib/modules/dri/mga_dri.so
+}
+{
+  /usr/X11R6/lib/modules/dri/mga_dri.so
+  Cond
+  obj:/usr/X11R6/lib/modules/dri/mga_dri.so
+}
+{
+  /usr/lib/libesd.so.0.2.22
+  Cond
+  obj:/usr/lib/libesd.so.0.2.22
+}
+{
+  /lib/ld-2.2.5.so
+  Cond
+  obj:/lib/ld-2.2.5.so
+}

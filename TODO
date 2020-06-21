@@ -1,0 +1,74 @@
+
+HIGH PRIORITY
+
+ * LW Object pool
+ * Scene destroy / select
+ * Create and destroy camera windows
+ * Parallel projections
+ * Support LightWave camera spesifications
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ * Add Material inheritance
+ * Implement selection group
+
+MEDIUM PRIORITY
+
+ * More mouse cursors
+ * More user interface components: Menu, Tree
+ * Refactor TeddyTests stuff into Teddy
+
+LOW PRIORITY
+
+ 
+ 

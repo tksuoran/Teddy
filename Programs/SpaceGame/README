@@ -1,0 +1,114 @@
+
+-- Teddy Demos --
+
+
+This file describes how to use TeddyTests programs. For build instructions,
+see README from parent directory.
+
+Once you have built you can run any of the programs:
+
+	../TestBasic/TestBasic
+	../TestObjects/TestObjects
+	../TestEvents/TestEvents
+	../TeddyPlayer/TeddyPlayer
+	../SpaceGame/SpaceGame
+
+General startup options for Teddy programs:
+
+--width  [int]                  Set screen width in pixels
+--height [int]                  Set Screen height
+--fullscreen / --no-fullscreen  Enable / disable fullscreen mode
+--cursor     / --no-cursor      Enable / disable mouse cursor
+--frame      / --no-frame       Enable / disable window frame
+
+General keys:
+
+ESC                Quit program
+PRINTSCREEN and !  Save shot.png screenshot
+SPACE              Toggle mouse control mode hold / drag
+
+TestEvents startup options:
+
+--subdiv [int]     Set object precision, 1 = low, 5 = default, 20 = very high
+--lwo              Add some lwo objects to the scene
+--trees            Add some trees to the scene
+--solids           Add some platonic solids like objects to the scene
+--lsystems         Add some lsystem objects to the scene
+--glow             Add some glowing things (buggy at the moment)
+	
+Controls for TestEvents:
+
+w         Use speed control from mouse and keyboard
+e         Use speed control from joystick with throttle
+
+Mouse Move          :  look at
+Mouse Left button   :  move forward
+Mouse Right button  :  move backward
+Cursor left / right :  move left / right
+Cursor home / end   :  move up   / down
+Joystick axis 0     :  heading
+Joystick axis 1     :  pitch
+Joystick axis 2     :  throttle
+Joystick axis 3     :  roll
+Joystick hat        :  move left/right and up/down
+
+F1   Draw with points
+F2   Draw with lines
+F3   Draw with filled polygons
+F4   Draw with filled, outlined polygons
+F5   Disable lighting
+F6   Enabled lighting
+F7   Wider field of vision
+F8   Narrower field of vision
+F9   Toggle texture mapping on/off
+F10  Toggle global colors on/off
+F11  Cycle global color
+
+m    Toggle use global materials (master)
+a    Toggle use of global ambient material
+d    Toggle use of global diffuse material
+s    Toggle use of global specular material
+S    Toggle use of global shinyness material
+
+SpaceGame startup options:
+
+--ai                Add computer controlled ships to the scene
+--lwo               Add lightwave objects to the scene
+--ffe               Interprete Frontier: First Encounters ships to scene (*)
+--ffe-debug         Enable debug output for --ffe
+--ffe-real-scaling  Use real object scaling for --ffe
+
+(*) Importing FFE ship models requires a file named 'ffedat.asm' to be in
+    the Data directory. The file is available from JJFFE source code archive,
+    from http://www.jaj22.demon.co.uk/
+	
+Controls for SpaceGame:
+
+j         Toggle control mode suitable for joystick/keyboard
+5         Cycle scanner range
+uiop      Rendering mode
+vb        Backface culling disabled / enabled
+fg        Depth test disabled / enabled
+kl        Lighting disabled / enabled
+nm        Change field of vision
+rt        Antialiasing off / on
+xs        Control pitch
+,.        Control roll
+F1        Front View
+F2        Left View
+F3        Right View
+F4        Rear View
+F5        Top View
+F6        Bottom View
+PageUp    ?
+PageDown  ?
+End       ?
+NumPad    Camera
+Escape    Quit
+F9        Save screenshot
+
+
+See http://teddy.sf.net for more information about Teddy.
+
+
+-- Timo Suoranta -- tksuoran@cc.helsinki.fi --

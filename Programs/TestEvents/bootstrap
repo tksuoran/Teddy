@@ -1,0 +1,8 @@
+#! /bin/sh
+autoheader
+aclocal
+autoconf
+# MESA_NO_DITHER=1
+# MESA_RGB_VISUAL="DirectColor 16"
+# MESA_FORCE_SOFTX=1
+# ../TestManipulate/TestManipulate --width 512 --height 512 --no-cursor

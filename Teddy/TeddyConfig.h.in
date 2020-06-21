@@ -1,0 +1,29 @@
+/* Teddy/TeddyConfig.h.in.  Generated automatically from configure.in by autoheader.  */
+
+/* Define if you have the ANSI C header files.  */
+#undef STDC_HEADERS
+
+/* Define if you have the SDL_JoystickOpen function.  */
+#undef HAVE_SDL_JOYSTICKOPEN
+
+/* Library name */
+#undef LIB_NAME
+
+/* Library version */
+#undef LIB_VERSION
+
+/* Release version */
+#undef LIB_RELEASE
+
+/* Define if Lightwave code is to be included. */
+#undef TEDDY_INCLUDE_LW_SCENE
+
+/* Define if SDL_image library is available. */
+#undef HAVE_LIB_SDL_IMAGE
+
+/* Define if png library is available. */
+#undef HAVE_LIB_PNG
+
+/* Define if native OpenGL is being used. */
+#undef USE_OPEN_GL
+

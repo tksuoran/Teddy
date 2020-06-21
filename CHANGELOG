@@ -1,0 +1,42 @@
+
+Changes from 1.79 to 1.80:
+ - Fixed problems with TinyGL, should work fine again
+ - Fixed sqrt for non-msvc compilers
+ - Fixed LightWave material parsing
+ - Added support for lefthanded coordinate systems (LightWave)
+ - Added support for directional lights
+ - Added Lightwave light support (point and directional)
+ - Support for SWIG work in progress
+ - Changed most defines to static constant class members
+ - Got rid of too large gl_ext
+ - Dropped unused sources from distribution
+ - Fixed drawbicolrect
+ - Used Valgrind to locate some bugs and memory leaks
+ 
+
+Changes from 1.78 to 1.79:
+ - Fixed building on linux
+ - Now also builds on mingw with msys
+
+Changes from 1.77 to 1.78:
+ - New Area layout and drawing code
+ - New Event code
+ - New classes Dock, Popup, MenuList
+ - Removed some deprecated classes and features
+ - Initial integration of Ftgl code
+ - Initial integration of SGI glu tesselation code
+ - Initial integration of Blender bsp code
+ - Work in progress: extruded 3D truetype fonts
+ - Work in progress: boolean csg operations for models
+
+
+Changes from 1.76 to 1.77:
+ - Fixed configure help info for enable-static
+ - Fixed transformVertices by adding clearTraversals
+ - Work in progress: MacOSX support
+
+Changes from 1.75 to 1.76:
+ - Fixed build scripts to support BSD unix systems
+ - Fixed potential hasExtension() crash
+ - Added support for SDL without joystick
+ - Removed potential M_PI was redefinition

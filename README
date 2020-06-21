@@ -1,0 +1,65 @@
+
+---- Teddy 1.80 ----
+
+
+Teddy is a 3D graphics library. It implements a simple windowing
+system and a simple scene graph. This is developer archive for
+Teddy.
+
+If you use Visual Studio, use the workspace file from VisualC
+directory. Directory Win32libs contains libraries for VisualC
+that Teddy needs. VisualC must be configured to find the files
+inside the archive. No more instructions for VisualC is available
+at the moment.
+
+On unix you may choose to use either shared or static library.
+Teddy configures itself into static library by default. Pass the
+--enable-shared parameter to configure if you want to try shared
+library version.
+
+To build the libTeddy.a library, do the following:
+
+	./configure && make
+
+There is a separate directory 'Programs' which contains demo programs
+that use libTeddy.a. To build these programs, do the following:
+
+	cd Programs/TestEvents && ./configure && make &&
+	more README
+
+
+---- Using Teddy as shared library ----
+
+
+To build the libTeddy.so shared library, do the following:
+
+	./configure --enable-shared && make
+
+If you did not configure with a prefix to your home directory or other
+place where you have access rights, you will need to do installing as
+super user:
+
+	su
+	make install
+	exit
+
+If the library installation path is not listed in /etc/ld.so.conf, you
+need to add it there and run /sbin/ldconfig.
+
+There is a separate directory 'TeddyTests' which contains demo programs
+that use libTeddy.so. To build these programs, do the following:
+
+	cd Programs/TestEvents && ./configure && make &&
+	more README
+
+This will build the programs and show usage instructions for the programs.
+If the configure fails to find Teddy library, there is a problem with
+pkg-config. In such case find out the correct installation location for
+Teddy.pc (in Teddy-1.80) by running "which pkg-config" and replace the
+/bin/pkg-config by /lib/pkgconfig. Copy Teddy.pc there and retry building
+Programs.
+
+See http://teddy.sf.net for more information about Teddy.
+
+
+-- Timo Suoranta -- tksuoran@cc.helsinki.fi --

@@ -1,0 +1,192 @@
+
+
+dnl autoconf input for TeddyTests
+dnl
+dnl TEDDY - General graphics application library
+dnl Copyright (C) 1999-2002  Timo Suoranta
+dnl tksuoran@cc.helsinki.fi
+dnl
+dnl This library is free software; you can redistribute it and/or
+dnl	modify it under the terms of the GNU Lesser General Public
+dnl	License as published by the Free Software Foundation; either
+dnl	version 2.1 of the License, or (at your option) any later version.
+dnl	
+dnl	This library is distributed in the hope that it will be useful,
+dnl	but WITHOUT ANY WARRANTY; without even the implied warranty of
+dnl	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+dnl	Lesser General Public License for more details.
+dnl	
+dnl	You should have received a copy of the GNU Lesser General Public
+dnl	License along with this library; if not, write to the Free Software
+dnl	Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+dnl	
+dnl	$Id:  $
+
+
+AC_PREREQ(2.13)
+AC_INIT(src/TestObjects.cpp)
+AC_CANONICAL_SYSTEM
+AC_SUBST(SHELL)
+AC_SUBST(DEPS_CFLAGS)
+AC_SUBST(DEPS_LIBS)
+AC_SUBST(CFLAGS)
+AC_SUBST(CXXFLAGS)
+AC_SUBST(COMPACT_OUTPUT)
+AC_SUBST(AR)
+AC_SUBST(NAME)
+AC_SUBST(DEP_O)
+AR=ar
+
+
+dnl --------------------------------------------------------------------------
+dnl Check for Teddy library
+dnl --------------------------------------------------------------------------
+
+
+AC_PATH_PROG(PKG_CONFIG, pkg-config, no)
+
+libmode=static
+AC_ARG_ENABLE(static,
+ [  --enable-static             Use static Teddy library],
+ [libmode=static])
+
+AC_ARG_ENABLE(shared,
+ [  --enable-shared             Use shared Teddy library],
+ [libmode=shared])
+
+
+AC_ARG_WITH(TEDDY_PREFIX,
+ [  --with-teddy-prefix=DIR     Teddy library location])
+
+if test x$libmode = xstatic ; then
+    if test -f ../../static_opt_libs -a -f ../../static_opt_cflags ; then
+        DEP_O="../../libTeddy.a"
+        DEPS_LIBS="../../libTeddy.a `cat ../../static_opt_libs`"
+        DEPS_CFLAGS="-I../.. `cat ../../static_opt_cflags`"
+    else
+        AC_MSG_ERROR([
+*** Static version of Teddy library was requested but not found.
+*** You must build Teddy library first in the parent directory.])
+    fi
+else
+	if test x$PKG_CONFIG = xno  ; then
+	    if test x$TEDDY_PREFIX = x ; then
+			AC_MSG_WARN([
+*** pkg-config was not found.
+***
+*** If you have Teddy but not pkg-config then you need to configure
+*** path for Teddy manually with the configure option
+*** --with-teddy-prefix=DIR
+***
+*** I will assume you want to use Teddy as static library
+*** from parent directory. Hopefully you have built it before
+*** attempting to build these tests.])
+            DEP_O="../../libTeddy.a"
+		    DEPS_LIBS="../libTeddy.a `cat ../static_opt_libs`"
+    		DEPS_CFLAGS="-I.. `cat ../static_opt_cflags`"
+		else
+		    DEPS_LIBS="-L$TEDDY_PREFIX/lib -lTeddy `sdl-config --libs`"
+	    	DEPS_CFLAGS="-I$TEDDY_PREFIX/include `sdl-config --cflags`"
+    	fi
+	else
+		PKG_CHECK_MODULES(DEPS, Teddy >= 1.0)
+    fi
+fi
+
+
+dnl --------------------------------
+dnl Set default options
+dnl --------------------------------
+
+
+DEBUG_FLAGS=""
+OPTIMIZE_FLAGS="-O6 -fomit-frame-pointer -ffast-math -fexpensive-optimizations"
+WARNINGS="-Wall -ansi -pedantic -Wno-unused -Wno-long-long"
+CWARNINGS="-Wno-uninitialized"
+CXXWARNINGS=""
+INCLUDES="-I."
+
+AC_ARG_ENABLE(debug,
+ [  --enable-debug              Produce executables with debugging symbols],
+ [DEBUG_FLAGS="-g"])
+
+AC_ARG_ENABLE(profile,
+ [  --enable-profile            Produce profiled executables],
+ [DEBUG_FLAGS="-g -pg"])
+
+optimize=no
+AC_ARG_ENABLE(optimize,
+ [  --enable-optimize           Produce executables with optimizations],
+ [optimize=yes])
+if test "x$optimize" = "xyes" ; then
+	OPTIMIZE_FLAGS="-O6 -fomit-frame-pointer -ffast-math -fexpensive-optimizations"
+	case "$host" in
+		*86-*-*) OPTIMIZE_FLAGS="$OPTIMIZE_FLAGS -malign-loops=2 -malign-jumps=2 -malign-functions=2";;
+	esac
+else
+    OPTIMIZE_FLAGS=""
+fi
+
+compact_output=no
+AC_ARG_ENABLE(compact,
+ [  --enable-compact            Compact make output],
+ [compact_output=yes])
+
+
+dnl -----------------------------------------------
+dnl 
+dnl -----------------------------------------------
+
+
+MODULE_DIR=`pwd`
+NAME=`basename $MODULE_DIR`
+
+dnl -----------------------------------------------
+dnl Setup compilers
+dnl -----------------------------------------------
+
+
+dnl Check for compilers.  We set CFLAGS and CXXFLAGS to null if unset, so
+dnl that these macros won't set them to default values that we don't want.
+if test "x${CFLAGS-notset}" = "xnotset" ; then
+    export CFLAGS
+    CFLAGS=""
+fi
+AC_PROG_CC
+if test "x${CXXFLAGS-notset}" = "xnotset" ; then
+    export CXXFLAGS
+    CXXFLAGS=""
+fi
+AC_PROG_CXX
+AC_PROG_RANLIB
+AC_PROG_INSTALL
+AC_HEADER_STDC
+
+
+dnl --------------------------------------------------------------------------
+dnl Finalize options
+dnl --------------------------------------------------------------------------
+
+
+CWARNINGS="$WARNINGS $CWARNINGS"
+CXXWARNINGS="$WARNINGS $CXXWARNINGS"
+CFLAGS="$CFLAGS $DEPS_CFLAGS $DEBUG_FLAGS $OPTIMIZE_FLAGS $INCLUDES $CWARNINGS"
+CXXFLAGS="$CXXFLAGS $DEPS_CFLAGS $DEBUG_FLAGS $OPTIMIZE_FLAGS $INCLUDES $CXXWARNINGS"
+LIBS="$LIBS $DEPS_LIBS"
+if test "x$compact_output" = "xyes"; then
+	COMPACT_OUTPUT="@ls -sh \$@"
+    CC="@${CC}"
+    CXX="@${CXX}"
+    AR="@${AR}"
+fi
+
+
+dnl -----------------------------------------------
+dnl Generate Makefile
+dnl -----------------------------------------------
+
+
+AC_OUTPUT(Makefile)
+
+dnl Print summary.
+echo "Configuration done. Now type \"make\"."

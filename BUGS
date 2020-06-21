@@ -1,0 +1,24 @@
+
+This is a list of known bugs etc
+
+- TestEvents is still (1.80) much work in progress...
+
+- Matrox drivers have problems. Not my fault.
+
+- If user interface buttons don't work and you have gcc 2.96.x
+  then get a newer gcc; dynamic_cast<> of 2.96.x does not work
+  
+- If data files are not found, programs may crash..
+
+- Platonic solids (Models/Solids.h) TruncatedCuboctahedron
+  is buggy.
+
+- Documentation is out of date. Especially the build and CVS
+  process changed in 1.75
+
+- HalfEdge structure is still work in progress,
+  it is not enabled at the moment.
+
+- Surface angle smoothing does not yet use angle weighting
+
+- Concave polygons are not yet subdivided into convex polygons
