@@ -1,0 +1,59 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        // meson setup build
+        {
+            "label":   "meson setup ../teddy_build",
+            "type":    "shell",
+            "command": "rm -fr ${workspaceFolder}/../teddy_build && meson setup ../teddy_build",
+                "problemMatcher": {
+                "base":          "$gcc",
+                "fileLocation": ["relative", "${workspaceFolder}/../teddy-build"]
+            },
+            "options": {
+                "env": {
+                    "CXX": "clang++",
+                    "LD":  "clang++",
+                    "CC":  "clang"
+                }
+            },
+            "group": "build",
+            "presentation": { "clear": true }
+        },
+        // build
+        {
+            "label":   "build",
+            "type":    "shell",
+            "command": "ninja -C ../teddy_build",
+            "problemMatcher": {
+                "base":          "$gcc",
+                "fileLocation": ["relative", "${workspaceFolder}/../teddy_build"]
+            },
+            "presentation": { "clear": true }
+        },
+        // scan-build
+        {
+            "label":   "scan-build",
+            "type":    "shell",
+            "command": "ninja -C ../teddy_build scan-build",
+            "problemMatcher": {
+                "base":          "$gcc",
+                "fileLocation": ["relative", "${workspaceFolder}/../teddy_build/meson-private/tmp"]
+            },
+            "presentation": { "clear": true }
+        },
+        // clean
+        {
+            "label":   "clean",
+            "type":    "shell",
+            "command": "ninja -C ../teddy_build clean",
+            "problemMatcher": {
+                "base":          "$gcc",
+                "fileLocation": ["relative", "${workspaceFolder}/../teddy_build"]
+            },
+            "presentation": { "clear": true }
+        }
+    ]
+}

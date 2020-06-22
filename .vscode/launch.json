@@ -1,0 +1,65 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        // SpaceGame
+        {
+            "name":            "SpaceGame",
+            "type":            "cppdbg",
+            "request":         "launch",
+            "program":         "${workspaceFolder}/../teddy_build/Programs/SpaceGame/SpaceGame",
+            "preLaunchTask":   "build",
+            "args":            [],
+            "stopAtEntry":     false,
+            "cwd":             "${workspaceFolder}/Programs",
+            "externalConsole": false,
+        },
+        // TeddyPlayer
+        {
+            "name":            "TeddyPlayer",
+            "type":            "cppdbg",
+            "request":         "launch",
+            "program":         "${workspaceFolder}/../teddy_build/Programs/TeddyPlayer/TeddyPlayer",
+            "preLaunchTask":   "build",
+            "args":            [],
+            "stopAtEntry":     false,
+            "cwd":             "${workspaceFolder}/Programs",
+            "externalConsole": false,
+        },
+        // TestBasic
+        {
+            "name":            "TestBasic",
+            "type":            "cppdbg",
+            "request":         "launch",
+            "program":         "${workspaceFolder}/../teddy_build/Programs/TestBasic/TestBasic",
+            "preLaunchTask":   "build",
+            "args":            [],
+            "stopAtEntry":     false,
+            "cwd":             "${workspaceFolder}/Programs",
+            "externalConsole": false,
+        },
+        // TestEvents
+        {
+            "name":            "TestEvents",
+            "type":            "cppdbg",
+            "request":         "launch",
+            "program":         "${workspaceFolder}/../teddy_build/Programs/TestEvents/TestEvents",
+            "preLaunchTask":   "build",
+            "args":            [],
+            "stopAtEntry":     false,
+            "cwd":             "${workspaceFolder}/Programs",
+            "externalConsole": false,
+        },
+        // TestObjects
+        {
+            "name":            "TestObjects",
+            "type":            "cppdbg",
+            "request":         "launch",
+            "program":         "${workspaceFolder}/../teddy_build/Programs/TestObjects/TestObjects",
+            "preLaunchTask":   "build",
+            "args":            [],
+            "stopAtEntry":     false,
+            "cwd":             "${workspaceFolder}/Programs",
+            "externalConsole": false,
+        }
+    ],
+}
