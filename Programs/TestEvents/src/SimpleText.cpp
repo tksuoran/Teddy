@@ -22,6 +22,7 @@
 */
 
 
+#include "Teddy/SysSupport/StdSDL.h"
 #include "Teddy/Application/BaseSimulationTimer.h"
 #include "Teddy/Graphics/Font.h"
 #include "Teddy/Graphics/View.h"
@@ -30,7 +31,6 @@
 #include "Teddy/PhysicalComponents/Style.h"
 #include "Teddy/Scenes/Camera.h"
 #include "Teddy/Scenes/Scene.h"
-#include "Teddy/SysSupport/StdIO.h"
 
 #include "ObjectManager.h"
 #include "SimpleText.h"

@@ -96,7 +96,7 @@ options(options)
 	}
 
 #	else
-	dmsg( M_AUDIO, "SDL_mixer was not available when built - Audio disabled" );
+	dmsg( M_AUDIO, "%s", "SDL_mixer was not available when built - Audio disabled" );
 #	endif
 }
 

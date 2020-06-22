@@ -47,8 +47,8 @@ WindowManager::WindowManager( View *view ){
 	this->focus       = NULL;
 	this->show_cursor = true;
 
-	SDL_EnableUNICODE  ( 1 );
-	SDL_EnableKeyRepeat( SDL_DEFAULT_REPEAT_DELAY, SDL_DEFAULT_REPEAT_INTERVAL );
+	//SDL_EnableUNICODE  ( 1 );
+	//SDL_EnableKeyRepeat( SDL_DEFAULT_REPEAT_DELAY, SDL_DEFAULT_REPEAT_INTERVAL );
 
 #	if 0//!defined( USE_TINY_GL )
 	this->cursor    = new ImageFileTexture( "Data/gui/frontier_cursor.png" );
@@ -114,7 +114,7 @@ WindowManager::WindowManager( View *view ){
 	} 
 	hold_pos  = view->getSize() / 2; 
 	mouse_pos = view->getSize() / 2; 
-	SDL_WarpMouse( (int)hold_pos[0], (int)hold_pos[1] );
+	//SDL_WarpMouse( (int)hold_pos[0], (int)hold_pos[1] );
 }
 
 
@@ -144,12 +144,12 @@ void WindowManager::inputLoop(){
 
             case SDL_KEYDOWN:
                 switch( event.key.keysym.sym ){
-                case SDLK_ESCAPE:  
+                case SDLK_ESCAPE:
 					dmsg( M_WME, "SDL_KEYDOWN SDLK_ESCAPE" );
-					exit( 0 ); 
+					exit( 0 );
 					break;
                 case SDLK_EXCLAIM: // for those that dont have print key
-                case SDLK_PRINT:   
+                case SDLK_PRINTSCREEN:
 					dmsg( M_WME, "SDL_KEYDOWN SDLK_EXCLAIM or SDLK_PRINT" );
 					view->pngScreenshot( "shot.png" );
 					break;
@@ -158,25 +158,17 @@ void WindowManager::inputLoop(){
                 break;
             case SDL_MOUSEMOTION:
                 dmsg( M_WME, "SDL_MOUSEMOTION" );
-                mouseMotion( event.motion.x, event.motion.y, 0, 0 );
+                mouseMotion( event.motion.x, event.motion.y, event.motion.xrel, event.motion.yrel );
                 break;
             case SDL_MOUSEBUTTONDOWN:
             case SDL_MOUSEBUTTONUP:
                 dmsg( M_WME, "SDL_MOUSEBUTTONDOWN / SDL_MOUSEBUTTONUP" );
                 mouseKey( event.button.button, event.button.state, event.button.x, event.button.y );
                 break;
-            case SDL_QUIT:            
+            case SDL_QUIT:
 				dmsg( M_WME, "SDL_QUIT" );
-				exit( 0 ); 
+				exit( 0 );
 				break;
-            case SDL_VIDEORESIZE:
-				dmsg( M_WME, "SDL_VIDEORESIZE" );
-                //	This messes OpenGL contexts; destroys the old one and creates a new one.
-                //	We need to reupload textures and redo displaylists
-                if( SDL_SetVideoMode(event.resize.w, event.resize.h, 0, SDL_OPENGL|SDL_RESIZABLE/*|SDL_FULLSCREEN*/) == NULL ) {
-                    fmsg( M_WME, "Unable to resize OpenGL screen: %s", SDL_GetError() );
-                }
-                break;
             default:
                 break;
             }
@@ -190,28 +182,28 @@ void WindowManager::inputLoop(){
 				const char *name = names.c_str();
                 dmsg( M_WME, "%s focus", name );
                 switch( event.type ){
-                case SDL_KEYDOWN:       
+                case SDL_KEYDOWN:
 					dmsg( M_WME, "SDL_KEYDOWN" );
-					focus->event( KeyDownEvent  (event.key.keysym) ); 
+					focus->event( KeyDownEvent  (event.key.keysym.scancode, event.key.keysym.sym, event.key.keysym.mod) );
 					break;
-                case SDL_KEYUP:         
+                case SDL_KEYUP:
 					dmsg( M_WME, "SDL_KEYUP" );
-					focus->event( KeyUpEvent    (event.key.keysym) ); 
+					focus->event( KeyUpEvent    (event.key.keysym.scancode, event.key.keysym.sym, event.key.keysym.mod) );
 					break;
-                case SDL_JOYAXISMOTION: 
+                case SDL_JOYAXISMOTION:
 					dmsg( M_WME, "SDL_JOYAXISMOTION" );
-					focus->event( JoyAxisEvent  (event.jaxis.axis, event.jaxis.value) ); 
+					focus->event( JoyAxisEvent  (event.jaxis.axis, event.jaxis.value) );
 					break;
-                case SDL_JOYHATMOTION:  
+                case SDL_JOYHATMOTION:
 					dmsg( M_WME, "SDL_JOYHATMOTION" );
-					focus->event( JoyHatEvent   (event.jhat.hat, event.jhat.value) ); 
+					focus->event( JoyHatEvent   (event.jhat.hat, event.jhat.value) );
 					break;
-                case SDL_JOYBALLMOTION: 
+                case SDL_JOYBALLMOTION:
 					dmsg( M_WME, "SDL_JOYBALLMOTION" );
-					focus->event( JoyBallEvent  (event.jball.ball, Vector2(event.jball.xrel,event.jball.yrel) ) ); 
+					focus->event( JoyBallEvent  (event.jball.ball, Vector2(event.jball.xrel,event.jball.yrel) ) );\
 					break;
-                case SDL_JOYBUTTONDOWN: 
-                case SDL_JOYBUTTONUP:   
+                case SDL_JOYBUTTONDOWN:
+                case SDL_JOYBUTTONUP:
 					dmsg( M_WME, "SDL_JOYBUTTONDOWN / SDL_JOYBUTTONUP" );
 					focus->event( JoyButtonEvent(event.jbutton.button, event.jbutton.state) ); 
 					break;
@@ -287,7 +279,7 @@ void WindowManager::inputLoop(){
 	if( focus_name != NULL ){
 		name = focus_name->getName();
 	}
-		
+
 	//  FIX It is unclear - should use style or something - if
 	//  Area wants to receive the event that activated it.
 	if( focus != NULL ){
@@ -324,17 +316,8 @@ void WindowManager::inputLoop(){
 	//  If warping, don't process mouse motion
 	//  Actually here may be some cases which want the
 	//  motion
-	if( hold == true ){
-		if( pos == hold_pos ){
-			mouse_pos = pos;
-			dmsg( M_WME, "Hold ignore" );
-			return;
-		}
-		SDL_WarpMouse( hold_pos[0], hold_pos[1] );
-		dmsg( M_WME, "Hold warp" );
-	}
 
-    IntVector2 delta = pos - mouse_pos;
+    IntVector2 delta = hold ? IntVector2(dx, dy) : pos - mouse_pos;
     mouse_pos = pos;
 
 	if( focus == NULL ){
@@ -439,9 +422,11 @@ void WindowManager::setHold( bool apply ){
 	if( hold != apply ){
 		hold     = apply;
 		if( hold == true ){
+            SDL_SetRelativeMouseMode(SDL_TRUE);
 			hold_pos = mouse_pos;
 			dmsg( M_WME, "Set hold to true" );
 		}else{
+            SDL_SetRelativeMouseMode(SDL_FALSE);
 			dmsg( M_WME, "Hold released" );
 		}
 		if( cursor == NULL || cursor->isGood() == false ){
@@ -454,7 +439,7 @@ void WindowManager::setHold( bool apply ){
 	}else{
 		dmsg( M_WME, "Hold unchanged" );
 	}
-}		
+}
 
 
 bool WindowManager::getHold() const {

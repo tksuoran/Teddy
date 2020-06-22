@@ -33,6 +33,7 @@
 #include "Teddy/MixIn/Options.h"
 #include "Teddy/Graphics/Color.h"
 #include "Teddy/Graphics/Device.h"
+#include "Teddy/SysSupport/StdSDL.h"
 #ifdef HAVE_LIB_PNG
 # include <png.h>
 #endif
@@ -43,7 +44,7 @@ namespace Teddy {
 	namespace PhysicalComponents { class Layer;         };
 	namespace PhysicalComponents { class WindowManager; };
 };
-struct SDL_Surface;
+struct SDL_Window;
 
 
 namespace Teddy    {
@@ -98,7 +99,7 @@ public:
 	static const unsigned long COLOR_MATERIAL;
 
 	static void          init();
-	static char         *feature_to_str( int a );
+	static const char   *feature_to_str( int a );
 	static unsigned int  getCode(unsigned int a);
 
 private:
@@ -111,7 +112,7 @@ public:
 	//  View Interface
 	void    reshape            ( int w, int h );
 	void    display            ();
-    void    displayPs          ( char *filename );
+    void    displayPs          ( const char *filename );
 
     const Teddy::Maths::TVector2<int> &getSize      () const;
 	float                        getRatio           ();
@@ -171,14 +172,14 @@ public:
 	void    begin2d            ();
 	void    end2d              ();
 
-	void	   printExtensions    ();
-	bool       hasExtension       ( const char *ext_name );
-	char      *getExtensions      ();
-	char      *getVendor          ();
-	char      *getRenderer        ();
-	char      *getVersion         ();
-	int        getMaxTextureSize  ();
-	int        getMaxLights       ();
+	void	    printExtensions    ();
+	bool        hasExtension       ( const char *ext_name );
+	const char *getExtensions      ();
+	const char *getVendor          ();
+	const char *getRenderer        ();
+	const char *getVersion         ();
+	int         getMaxTextureSize  ();
+	int         getMaxLights       ();
 	Teddy::Maths::TVector<int>  getMaxViewportDims ();
 
 	void    drawString         ( const Teddy::Maths::TVector2<float> &pos, const char *str, Font *font );  // const?
@@ -209,8 +210,8 @@ public:
     int     getScreenWidth();
     int     getScreenHeight();
 
-	bool                   pngScreenshot   ( char *filename );
-	SDL_Surface           *getSurface      ();
+	bool                   pngScreenshot   ( const char * const filename );
+	SDL_Window            *getWindow       ();
 	Teddy::MixIn::Options &getOptions      (){ return options; }
 
 	static void  check           ();
@@ -221,7 +222,8 @@ public:
 
 protected:
 	Teddy::MixIn::Options                     options;
-	SDL_Surface                              *sdl_surface;
+    SDL_Window                               *sdl_window;
+    SDL_GLContext                             sdl_gl_context;
     Teddy::PhysicalComponents::WindowManager *window_manager;
     Texture                                  *current_texture;
     Teddy::Maths::TVector2<int>               size;

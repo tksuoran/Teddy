@@ -366,28 +366,28 @@ void View::texture( const TVector2<double> &t ) const {
 
 
 
-char *View::getExtensions(){
+const char *View::getExtensions(){
 #	if defined( USE_OPEN_GL )
 //#error poo
-		return (char *)glGetString( GL_EXTENSIONS );
+		return (const char *)glGetString( GL_EXTENSIONS );
 #	else
 		return "";
 #	endif
 }
 
 
-char *View::getVendor(){
+const char *View::getVendor(){
 #	if defined( USE_OPEN_GL )
-		return (char *)glGetString( GL_VENDOR );
+		return (const char *)glGetString( GL_VENDOR );
 #	else
 		return "Inbuilt Software";
 #	endif
 }
 
 
-char *View::getRenderer(){
+const char *View::getRenderer(){
 #	if defined( USE_OPEN_GL )
-	return (char *)glGetString( GL_RENDERER );
+	return (const char *)glGetString( GL_RENDERER );
 #	endif
 #	if defined( USE_TINY_GL )
 	return "TinyGL";
@@ -396,9 +396,9 @@ char *View::getRenderer(){
 }
 
 
-char *View::getVersion(){
+const char *View::getVersion(){
 #	if defined( USE_OPEN_GL )
-	return (char *)glGetString( GL_VERSION );
+	return (const char *)glGetString( GL_VERSION );
 #	endif
 #	if defined( USE_TINY_GL )
 	return "1.0";

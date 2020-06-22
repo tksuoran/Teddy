@@ -34,7 +34,7 @@ namespace SysSupport {
 Timer::Timer( Uint32 frequency ){
 	this->frequency  = frequency;
 	this->running    = false;
-	this->sdl_thread = SDL_CreateThread( Timer::sdl_thread_function, this );
+	this->sdl_thread = SDL_CreateThread( Timer::sdl_thread_function, "Timer", this );
 }
 
 

@@ -99,18 +99,18 @@ extern double speed;
 void Hud::drawSelf(){
 	char            hud[100];
 	const char     *name;
-	char           *unit;
+	const char     *unit;
 	ShipController *controller = getObjectManager()->getPlayerController();
 	ModelAnimator  *animator   = controller->getAnimator();
 	Model          *model      = animator  ->getModel   ();
 	Model          *target     = controller->getTarget  ();
 	float           dst        = 0;
 	float           distance   = 0;
-	double          radius     = 0;
-	double          angle      = 0;
-	double          kal_h      = 0;
+	// double          radius     = 0;
+	// double          angle      = 0;
+	// double          kal_h      = 0;
 
-	view->enable      ( View::BLEND );  
+	view->enable      ( View::BLEND );
 	view->enable      ( View::TEXTURE_2D );
 	view->setBlendFunc( GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA );
 
@@ -160,7 +160,7 @@ void Hud::drawSelf(){
 	drawString( Vector2( 5.0f,8.0f), hud, style->small_font);
 
 	float  speed      = animator->getSpeed() * 100.0f;
-	char  *speed_unit = "m/s";
+	const char  *speed_unit = "m/s";
 	if( fabs(speed) < 0.1f ){
 		speed      *= 100.0f;
 		speed_unit  = "cm/s";

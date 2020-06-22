@@ -51,6 +51,9 @@ public BaseObjectManager
 {
 public:
 	ObjectManager( Root *root );
+    virtual ~ObjectManager()
+    {        
+    }
 
 	virtual void   addObjects      ();
 	LWSceneParser *getLWSceneParser();

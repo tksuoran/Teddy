@@ -36,12 +36,12 @@ namespace SysSupport {
 */
 class Exception {
 protected:
-	char *msg;
+	const char *msg;
 
 public:
-	Exception( char *msg );
+	Exception( const char *msg );
 
-	char *tellMsg();
+	const char *tellMsg();
 };
 
 

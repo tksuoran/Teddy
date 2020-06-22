@@ -112,10 +112,10 @@ bool ObjectManager::addLwo(){
 	lwo_sphere        ->setPosition(  800, 100,  800 );
 
 	Vector       zv = Vector(0,0,0);
-	const double k1 = rads( -0.5 );
-	const double k2 = rads(  0.5 );
-	const double k3 = rads( -0.4 );
-	const double k4 = rads(  0.4 );
+	// const double k1 = rads( -0.5 );
+	// const double k2 = rads(  0.5 );
+	// const double k3 = rads( -0.4 );
+	// const double k4 = rads(  0.4 );
 
     /*
 	st->add(  new BaseModelAnimator( lwo_cubeoctahedron, zv,  0,  0, k2 )  );

@@ -63,7 +63,7 @@ struct Feedback3Dcolor {
 };
 
 
-static char *NicegouraudtriangleEPS[] = {
+static const char * const NicegouraudtriangleEPS[] = {
 	"\n% Smooth-shaded triangle - x3 y3 r3 g3 b3 x2 y2 r2 g2 b2 x1 y1 r1 g1 b1 ST",
 	"/ST {",
 	"	/b1 exch def",
@@ -120,7 +120,7 @@ static char *NicegouraudtriangleEPS[] = {
 };
 
 
-static char *gouraudtriangleEPS[] ={
+static const char * const gouraudtriangleEPS[] ={
 	"/bd{bind def}bind def /triangle { aload pop   setrgbcolor  aload pop 5 3",
 	"roll 4 2 roll 3 2 roll exch moveto lineto lineto closepath fill } bd",
 	"/computediff1 { 2 copy sub abs threshold ge {pop pop pop true} { exch 2",
@@ -151,7 +151,7 @@ static char *gouraudtriangleEPS[] ={
 
 
 
-void PsRenderer::writePs( char *pFilename, GLfloat *pFeedbackBuffer, int NbValues, bool sort ){
+void PsRenderer::writePs( const char *pFilename, GLfloat *pFeedbackBuffer, int NbValues, bool sort ){
 	assert( pFilename );
 
 	FILE *pFile = fopen( pFilename, "wt" );

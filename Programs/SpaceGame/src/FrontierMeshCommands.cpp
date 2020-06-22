@@ -530,7 +530,7 @@ void FrontierModel::cChild(){
 	// the next two words are coordinates which are to be inserted in the sub-object.
 	int ob = header>>5;
 	readParams( 1 );
-	if( high(1) & 0x80 == 0x80 ){
+	if( (high(1) & 0x80) == 0x80 ){
 		readParams( 2 );
 	}
 
@@ -564,7 +564,7 @@ void FrontierModel::cScaledChild(){
 	// more parameters follow.
 	int ob = header>>5;
 	readParams( 3 );
-	if( low(1) & 0x80 == 0x80 ){
+	if( (low(1) & 0x80) == 0x80 ){
 		readParams( 2 );
 	}
 
@@ -776,7 +776,7 @@ void FrontierModel::cUnknown1a(){
 	// used to change the color of selected objects to one of the 7 in the array.
 	readParams( 1 );
 
-	if( low(1) & 0x80 == 0x80 ){
+	if( (low(1) & 0x80) == 0x80 ){
 		readParams( 8 );
 		dprint( M_FFE, " -CASE 1A- " );
 	}else{

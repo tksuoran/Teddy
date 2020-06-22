@@ -101,7 +101,7 @@ void EventManager::bindController( Model *model ){
 	Projection    *p            = getUserInterface()->getProjection   ();
 	LWSceneParser *lwsc         = getObjectManager()->getLWSceneParser();
 
-	switch( e.key.sym ){
+	switch( e.key_sym ){
 	case SDLK_ESCAPE:
 	case 'q'        : exit(0); break;
 
@@ -142,29 +142,29 @@ void EventManager::bindController( Model *model ){
 	case 'p' : lwsc->play (); break;
 	case 's' : lwsc->stop (); break;
 	case 'r' : lwsc->reset(); break;
-	case SDLK_KP6 : {
+	case SDLK_KP_6 : {
 		float multiplier = lwsc->getMultiplier();
 		multiplier *= 1.1f;
 		lwsc->setMultiplier( multiplier );
 		break;
 		}
-	case SDLK_KP5 : {
+	case SDLK_KP_5 : {
 		float multiplier = lwsc->getMultiplier();
 		multiplier *= -1;
 		lwsc->setMultiplier( multiplier );
 		break;
 		}
-	case SDLK_KP4 : {
+	case SDLK_KP_4 : {
 		float multiplier = lwsc->getMultiplier();
 		multiplier /= 1.1f;
 		lwsc->setMultiplier( multiplier );
 		break;
 		}
 
-	case CONTROL_KEY_STRAFE_RIGHT: controller->getTranslateRight()->more(true); break;  
-	case CONTROL_KEY_STRAFE_LEFT : controller->getTranslateRight()->less(true); break;  
-	case CONTROL_KEY_STRAFE_UP   : controller->getTranslateUp   ()->more(true); break;  
-	case CONTROL_KEY_STRAFE_DOWN : controller->getTranslateUp   ()->less(true); break;  
+	case CONTROL_KEY_STRAFE_RIGHT: controller->getTranslateRight()->more(true); break;
+	case CONTROL_KEY_STRAFE_LEFT : controller->getTranslateRight()->less(true); break;
+	case CONTROL_KEY_STRAFE_UP   : controller->getTranslateUp   ()->more(true); break;
+	case CONTROL_KEY_STRAFE_DOWN : controller->getTranslateUp   ()->less(true); break;
 	case SDLK_F1 : p->getMaster()->setMode    ( Material::RENDER_MODE_POINT        ); break;
 	case SDLK_F2 : p->getMaster()->setMode    ( Material::RENDER_MODE_LINE         ); break;
 	case SDLK_F3 : p->getMaster()->setMode    ( Material::RENDER_MODE_FILL         ); break;
@@ -174,8 +174,8 @@ void EventManager::bindController( Model *model ){
 	case SDLK_F7 : p->getCamera()->modFov     (  5 ); break;
 	case SDLK_F8 : p->getCamera()->modFov     ( -5 ); break;
 	case SDLK_F9 : p->getMaster()->toggle     ( Material::RENDER_OPTION_TEXTURE_2D_M ); break;
-	case SDLK_F10: 
-		p->getSelect().toggle( Material::RENDER_OPTION_DIFFUSE_M ); 
+	case SDLK_F10:
+		p->getSelect().toggle( Material::RENDER_OPTION_DIFFUSE_M );
 		if( p->getSelect().isEnabled(Material::RENDER_OPTION_DIFFUSE_M) ){
 			p->setClearColor( Color(0.3f,0.4f,0.5f,1.0f) );
 		}else{
@@ -226,11 +226,11 @@ void EventManager::bindController( Model *model ){
 	the control is deactivated.
 */
 /*virtual*/ bool EventManager::keyUp( const Event &e ){
-	switch( e.key.sym ){
-	case CONTROL_KEY_STRAFE_RIGHT: controller->getTranslateRight()->more(false); break;  
-	case CONTROL_KEY_STRAFE_LEFT : controller->getTranslateRight()->less(false); break;  
-	case CONTROL_KEY_STRAFE_UP   : controller->getTranslateUp   ()->more(false); break;  
-	case CONTROL_KEY_STRAFE_DOWN : controller->getTranslateUp   ()->less(false); break;  
+	switch( e.key_sym ){
+	case CONTROL_KEY_STRAFE_RIGHT: controller->getTranslateRight()->more(false); break;
+	case CONTROL_KEY_STRAFE_LEFT : controller->getTranslateRight()->less(false); break;
+	case CONTROL_KEY_STRAFE_UP   : controller->getTranslateUp   ()->more(false); break;
+	case CONTROL_KEY_STRAFE_DOWN : controller->getTranslateUp   ()->less(false); break;
 	default: break;
     }
     return true;

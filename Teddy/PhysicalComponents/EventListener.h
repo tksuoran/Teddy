@@ -37,7 +37,10 @@ namespace PhysicalComponents {
 
 struct Event {
 	int                          type;
-    SDL_keysym                   key;
+    SDL_Scancode                 key_scancode; /**< SDL physical key code - see ::SDL_Scancode for details */
+    SDL_Keycode                  key_sym;      /**< SDL virtual key code - see ::SDL_Keycode for details */
+    Uint16                       key_mod;      /**< current key modifiers */
+
     int                          item_id;
     int                          state;
     Teddy::Maths::TVector2<int>  pos;
@@ -171,16 +174,20 @@ struct KeyEvent : public Event {
 };
 
 struct KeyDownEvent : public KeyEvent {
-    KeyDownEvent( const SDL_keysym key ){
-        type      = KeyDownEvent_ID;
-        this->key = key;
+    KeyDownEvent( SDL_Scancode scancode, SDL_Keycode sym, Uint16 mod ){
+        type               = KeyDownEvent_ID;
+        this->key_scancode = scancode;
+        this->key_sym      = sym;
+        this->key_mod      = mod;
     }
 };
 
 struct KeyUpEvent : public KeyEvent {
-    KeyUpEvent( const SDL_keysym key ){
+    KeyUpEvent( SDL_Scancode scancode, SDL_Keycode sym, Uint16 mod ){
         type      = KeyUpEvent_ID;
-        this->key = key;
+        this->key_scancode = scancode;
+        this->key_sym      = sym;
+        this->key_mod      = mod;
     }
 };
 

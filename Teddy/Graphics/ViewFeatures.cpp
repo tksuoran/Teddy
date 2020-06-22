@@ -101,7 +101,7 @@ namespace Graphics {
 
 
 //!  Return description for graphics feature
-/*static*/ char *View::feature_to_str( int a ){
+/*static*/ const char *View::feature_to_str( int a ){
 	switch( a ){
 	case CULL_FACE     : return "CULL_FACE     ";
 	case BLEND         : return "BLEND         ";

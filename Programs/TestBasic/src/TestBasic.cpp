@@ -55,6 +55,7 @@ public:
 class ObjectManager : public BaseObjectManager, public Tick {
 public:
 	ObjectManager();
+    virtual ~ObjectManager(){}
 	virtual void tick();
 protected:
 	Model *grid;
@@ -64,6 +65,8 @@ protected:
 class UserInterface : public BaseUserInterface {
 public:
 	UserInterface( Root *root ):BaseUserInterface(root){}
+    virtual ~UserInterface(){}
+
 	virtual void addComponents();
 };
 
@@ -100,7 +103,7 @@ ObjectManager::ObjectManager(){
 	Quaternion q = rot;
 	emsg( M_DEBUG, "% 5.4f % 5.4f % 5.4f % 5.4f", q.v[0], q.v[1], q.v[2], q.v[3] );
 #endif
-}																				  
+}
 
 
 //!  Animate the scene

@@ -76,7 +76,7 @@ FrontierModel::FrontierModel( FrontierFile *f, int ob_id, Material *m, Options f
 
 //!  Parse object structure from file
 void FrontierModel::parseObject( const int object_index ){
-	char *object_pointer = "";
+	char *object_pointer = NULL;
 	int   i;
 
 	//  Seek to object directory
@@ -128,7 +128,7 @@ void FrontierModel::parseObject( const int object_index ){
 
 
 void FrontierModel::parseSpecs(){
-	char *name_pointer = "";
+	char *name_pointer = NULL;
 	int   i;
 
 	if( strcmp( spec_pointer, "NULL:" ) == 0 ){
@@ -265,7 +265,7 @@ void FrontierModel::parseElements(){
 			dprint( M_FFE, "\n%s", e.tellMsg() );
 			throw( Exception("Exception while reading object command header") );
 		}
-		header   = (h_b<<8) + (h_a);  
+		header   = (h_b<<8) + (h_a);
 		command  = header & 0x001f;   //  Each command is held in the LOWER 5 BITS of the FIRST WORD of the command;
 		material = header & 0xffe0;   //  The upper 11 bits are MATERIAL PARAMETERS.
 

@@ -34,31 +34,31 @@ namespace SysSupport {
 
 
 #define MAX_MSG_TYPES 64
-static bool  msg_enable[MAX_MSG_TYPES];
-static char *msg_desc  [MAX_MSG_TYPES];
-static int   last_msg_type = 0;
+static bool        msg_enable[MAX_MSG_TYPES];
+static const char *msg_desc  [MAX_MSG_TYPES];
+static int         last_msg_type = 0;
 
 
 int M_FATAL;
 int M_ERROR;
-int M_WARN; 
+int M_WARN;
 int M_DEBUG;
-int M_INIT; 
-int M_GL;   
-int M_WM;   
-int M_WMD;   
-int M_WME;   
+int M_INIT;
+int M_GL;
+int M_WM;
+int M_WMD;
+int M_WME;
 int M_WML;
-int M_MAT;  
-int M_MOD;  
+int M_MAT;
+int M_MOD;
 int M_SCN;
-int M_LWO;  
-int M_LWS;  
-int M_TMAP; 
+int M_LWO;
+int M_LWS;
+int M_TMAP;
 int M_VERT;
 int M_AUDIO;
-int M_FFE;  
-int M_NET;  
+int M_FFE;
+int M_NET;
 
 
 #if defined(_MSC_VER)
@@ -95,7 +95,7 @@ void init_msg(){
 }
 
 
-int alloc_msg( char *desc ){
+int alloc_msg( const char *desc ){
     msg_desc[last_msg_type] = desc;
     return last_msg_type++;
 }
@@ -121,7 +121,7 @@ void disable_msg( int type ){
 }
 
 
-void msg( int type, char *format, ... ){
+void msg( int type, const char *format, ... ){
 	if( (type >=0) && (type < last_msg_type) ){
 		if( msg_enable[type] == true ){
 			va_list ap;
@@ -138,7 +138,7 @@ void msg( int type, char *format, ... ){
 }
 
 
-void dmsg( int type, char *format, ... ){
+void dmsg( int type, const char *format, ... ){
 	if( (type >=0) && (type < last_msg_type) ){
 		if( msg_enable[type] == true ){
 			va_list ap;
@@ -155,7 +155,7 @@ void dmsg( int type, char *format, ... ){
 }
 
 
-void dprint( int type, char *format, ... ){
+void dprint( int type, const char *format, ... ){
 	if( (type >=0) && (type < last_msg_type) ){
 		if( msg_enable[type] == true ){
 			va_list ap;
@@ -167,7 +167,7 @@ void dprint( int type, char *format, ... ){
 }
 
 
-void emsg( int type, char *format, ... ){
+void emsg( int type, const char *format, ... ){
 	if( (type >=0) && (type < last_msg_type) ){
 		va_list ap;
 
@@ -182,7 +182,7 @@ void emsg( int type, char *format, ... ){
 }
 
 
-void fmsg( int type, char *format, ... ){
+void fmsg( int type, const char *format, ... ){
 	if( (type >=0) && (type < last_msg_type) ){
 		va_list ap;
 

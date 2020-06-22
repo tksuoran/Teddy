@@ -56,6 +56,7 @@ using namespace Teddy::Imports;
 using namespace Teddy::Materials;
 using namespace Teddy::PhysicalComponents;
 using namespace Teddy::Scenes;
+using namespace Teddy::Maths;
 
 
 //!  ObjectManager constructor
@@ -320,7 +321,7 @@ void ObjectManager::selectModel( const Vector2 &pos ){
 	Model                  *pick;
 	list<Model*>::iterator  m_it;
 	Ship                   *ship;
-		
+
 	pick = getUserInterface()->getProjection()->pick( pos );
 	ship = dynamic_cast<Ship*>( pick );
 

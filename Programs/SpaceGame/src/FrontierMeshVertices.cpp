@@ -38,6 +38,7 @@
 #include "FrontierFile.h"
 using namespace Teddy::Materials;
 using namespace Teddy::Models;
+using namespace Teddy::Maths;
 
 
 // Vertex types by first byte (b0):

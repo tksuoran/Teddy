@@ -47,6 +47,7 @@ class BaseRoot;
 class BaseUserInterface {
 public:
 	BaseUserInterface( BaseRoot *root );
+    virtual ~BaseUserInterface(){}
 
 	virtual void   addComponents   () = 0;
 	void           enterRunLoop    ();

@@ -34,7 +34,7 @@ namespace PhysicalComponents {
 
 
 //!  Constructor
-Label::Label( char *label ):Area(label),text(label){
+Label::Label( const char *label ):Area(label),text(label){
     fill_base_pixels[0] = name.size() * style->button_font->getWidth() + style->padding[0] * 2;
     fill_base_pixels[1] = style->glyph_size[1] + style->padding[1]*2;;
 	drawing_ordering = post_self;
@@ -52,12 +52,12 @@ Label::Label( char *label ):Area(label),text(label){
 }
 
 
-void Label::setText( char *text ){
+void Label::setText( const char *text ){
 	this->text = text;
 }
 
 
-char *Label::getText(){
+const char *Label::getText(){
 	return this->text;
 }
 

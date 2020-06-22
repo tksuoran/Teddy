@@ -22,7 +22,10 @@
 */
 
 
+#include "Teddy/SysSupport/StdSDL.h"
 #include "Bouncer.h"
+#include "Teddy/Models/Model.h"
+
 using namespace Teddy::Behaviour;
 using namespace Teddy::Models;
 using namespace Teddy::Maths;

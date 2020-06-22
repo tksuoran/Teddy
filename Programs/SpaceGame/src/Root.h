@@ -58,7 +58,7 @@ public:
 	inline UserInterface       *getUserInterface  (){ return user_interface;   }
 
 protected:
-	Options ffe_options;
+	Teddy::MixIn::Options ffe_options;
 
 private:
 	ActionManager       *action_manager;

@@ -55,7 +55,7 @@ public:
 	~PsRenderer(){}
 
 public:
-	void writePs( char *pFilename, GLfloat *pFeedbackBuffer, int NbValues, bool sort );
+	void writePs( const char *pFilename, GLfloat *pFeedbackBuffer, int NbValues, bool sort );
 
 private:
 	static int  compare             ( const void *a, const void *b );

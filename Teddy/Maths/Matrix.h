@@ -112,7 +112,7 @@ public:
 	void operator=( const float *pf ){
 	    float *to = &m[0][0];
 
-		for( register int i=0; i<16; i++ ){
+		for( int i=0; i<16; i++ ){
 			to[i] = pf[i];
 		}
 	}
@@ -124,7 +124,7 @@ public:
 	    const float *from = &    m[0][0];
 	    float       *to   = &mat.m[0][0];
 
-		for( register int i=0; i<16; i++ ){
+		for( int i=0; i<16; i++ ){
 			to[i] = -from[i];
 		}
 		return mat;

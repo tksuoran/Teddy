@@ -47,8 +47,8 @@ public:
 	LSystem();
 	virtual ~LSystem();
 
-	void setAxiom    ( char          *axiom );
-	void setRule     ( unsigned char  c, char *rule );
+	void setAxiom    ( const char    *axiom );
+	void setRule     ( unsigned char  c, const char *rule );
 	void setAngle    ( float          angle  );
 	void setLength   ( float          length );
 	void setThickness( float          thickness );

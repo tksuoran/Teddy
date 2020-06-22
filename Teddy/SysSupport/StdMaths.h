@@ -88,14 +88,6 @@ namespace SysSupport {
 # define sqrtf(x) (float)(sqrt(x))
 #endif
 
-#if defined(_MSC_VER)
-# define isnan _isnan
-#else
-# ifndef isnan
-#  define isnan __isnan
-# endif
-#endif
-
 
 #ifndef MIN
 #define MIN(a,b) ((a)<(b)?(a):(b))

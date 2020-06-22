@@ -64,14 +64,14 @@ extern int M_NET;     //!<  Networking messages
 
 
 extern void init_msg   ();
-extern int  alloc_msg  ( char *desc );
+extern int  alloc_msg  ( const char *desc );
 extern void enable_msg ( int type );
 extern void disable_msg( int type );
-extern void msg        ( int type, char *format, ... );
-extern void dmsg       ( int type, char *format, ... );
-extern void dprint     ( int type, char *format, ... );
-extern void emsg       ( int type, char *format, ... );
-extern void fmsg       ( int type, char *format, ... );
+extern void msg        ( int type, const char *format, ... );
+extern void dmsg       ( int type, const char *format, ... );
+extern void dprint     ( int type, const char *format, ... );
+extern void emsg       ( int type, const char *format, ... );
+extern void fmsg       ( int type, const char *format, ... );
 
 
 };  //  namespace SysSupport

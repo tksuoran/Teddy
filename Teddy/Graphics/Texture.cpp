@@ -248,7 +248,7 @@ void Texture::setWorkData( void *vdata, bool alloc ){
 		if( data != NULL ){
 			work_data_allocated = true;
 		}else{
-			work_data_allocated;
+			work_data_allocated = false;
 		}
 	}
 }

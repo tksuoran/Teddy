@@ -64,12 +64,12 @@ Model( "LSystem" )
 }
 
 
-void LSystem::setAxiom( char *axiom ){
+void LSystem::setAxiom( const char *axiom ){
 	this->cur_data = axiom;
 }
 
 
-void LSystem::setRule( unsigned char c, char *rule ){
+void LSystem::setRule( unsigned char c, const char *rule ){
 	rules[c] = rule;
 }
 

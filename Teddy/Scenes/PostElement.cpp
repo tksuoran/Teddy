@@ -43,7 +43,7 @@ namespace Teddy  {
 namespace Scenes {
 
 
-PostElement::PostElement( char *filename ){
+PostElement::PostElement( const char *filename ){
 	txt = new ImageFileTexture( filename );
 }
 

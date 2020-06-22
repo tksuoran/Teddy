@@ -79,10 +79,6 @@ ViewClient(NULL)
     offset_free_size_relative = Vector2( 0, 0 );  //!<  offset relative to remaining free size
 	fill_base_pixels          = Vector2( 0, 0 );  //!<
     fill_free_size_relative   = Vector2( 0, 0 );  //!<
-    Area          *t_ar = dynamic_cast<Area          *>( this );
-    ActionButton  *t_ab = dynamic_cast<ActionButton  *>( this );
-    EventListener *t_ev = dynamic_cast<EventListener *>( this );
-    Named         *t_na = dynamic_cast<Named         *>( this );
 }
 
 

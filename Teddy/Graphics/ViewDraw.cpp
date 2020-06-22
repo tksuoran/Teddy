@@ -78,7 +78,7 @@ void View::drawFillRect( const float x1, const float y1, const float x2, const f
 
 void View::blit( const Vector2 &pos, Texture *t ){
     Vector2 size = Vector2( t->getSize() );
-    Vector2 max  = pos + (Vector2)( t->getSize() ) - Vector2( 1, 1 );
+    Vector2 max  = pos + size - Vector2( 1, 1 );
     //int x2 = x1 + t->getWidth () -1 ;
 	//int y2 = y1 + t->getHeight() -1 ;
 

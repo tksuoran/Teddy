@@ -208,8 +208,8 @@ void Display::setHold( bool hold ){
 
 /*virtual*/ bool Display::joyAxis( const Event &e ){
 	dmsg( M_WME, "Display::joyAxis" );
-    const int &axis_id = e.item_id;
-    const int &value   = e.state;;
+    //const int &axis_id = e.item_id;
+    //const int &value   = e.state;;
 
 	float tra = -0.0003 * (float)(e.state); //32768.0;
 	float rad = rads(0.00001) * (float)(e.state); //32768.0;
@@ -254,11 +254,10 @@ void Display::setHold( bool hold ){
 */
 /*virtual*/ bool Display::keyDown( const Event &e ){
 	dmsg( M_WME, "Display::keyDown" );
-    const SDL_keysym &key          = e.key;
 	static int        color_select = 0;
 	Projection       *p            = getUserInterface()->getProjection();
 
-	switch( key.sym ){
+	switch( e.key_sym ){
 	case SDLK_ESCAPE:
 	case 'q'        : exit(0); break;
 	case '1'        : {
@@ -290,10 +289,10 @@ void Display::setHold( bool hold ){
 		}
 		break;
 
-	case CONTROL_KEY_STRAFE_RIGHT: controller->getTranslateRight()->more(true); break;  
-	case CONTROL_KEY_STRAFE_LEFT : controller->getTranslateRight()->less(true); break;  
-	case CONTROL_KEY_STRAFE_UP   : controller->getTranslateUp   ()->more(true); break;  
-	case CONTROL_KEY_STRAFE_DOWN : controller->getTranslateUp   ()->less(true); break;  
+	case CONTROL_KEY_STRAFE_RIGHT: controller->getTranslateRight()->more(true); break;
+	case CONTROL_KEY_STRAFE_LEFT : controller->getTranslateRight()->less(true); break;
+	case CONTROL_KEY_STRAFE_UP   : controller->getTranslateUp   ()->more(true); break;
+	case CONTROL_KEY_STRAFE_DOWN : controller->getTranslateUp   ()->less(true); break;
 	case SDLK_F1 : p->getMaster()->setMode    ( Material::RENDER_MODE_POINT        ); break;
 	case SDLK_F2 : p->getMaster()->setMode    ( Material::RENDER_MODE_LINE         ); break;
 	case SDLK_F3 : p->getMaster()->setMode    ( Material::RENDER_MODE_FILL         ); break;
@@ -303,7 +302,7 @@ void Display::setHold( bool hold ){
 	case SDLK_F7 : p->getCamera()->modFov     (  5 ); break;
 	case SDLK_F8 : p->getCamera()->modFov     ( -5 ); break;
 	case SDLK_F9 : p->getMaster()->toggle     ( Material::RENDER_OPTION_TEXTURE_2D_M ); break;
-	case SDLK_F10: 
+	case SDLK_F10:
 		p->getSelect().toggle( Material::RENDER_OPTION_DIFFUSE_M ); 
 		if( p->getSelect().isEnabled(Material::RENDER_OPTION_DIFFUSE_M) ){
 			p->setClearColor( Color(0.3f,0.4f,0.5f,1.0f) );
@@ -363,12 +362,11 @@ void Display::setHold( bool hold ){
 */
 /*virtual*/ bool Display::keyUp( const Event &e ){
 	dmsg( M_WME, "Display::keyUp" );
-    const SDL_keysym &key = e.key;
-	switch( key.sym ){
-	case CONTROL_KEY_STRAFE_RIGHT: controller->getTranslateRight()->more(false); break;  
-	case CONTROL_KEY_STRAFE_LEFT : controller->getTranslateRight()->less(false); break;  
-	case CONTROL_KEY_STRAFE_UP   : controller->getTranslateUp   ()->more(false); break;  
-	case CONTROL_KEY_STRAFE_DOWN : controller->getTranslateUp   ()->less(false); break;  
+	switch( e.key_sym ){
+	case CONTROL_KEY_STRAFE_RIGHT: controller->getTranslateRight()->more(false); break;
+	case CONTROL_KEY_STRAFE_LEFT : controller->getTranslateRight()->less(false); break;
+	case CONTROL_KEY_STRAFE_UP   : controller->getTranslateUp   ()->more(false); break;
+	case CONTROL_KEY_STRAFE_DOWN : controller->getTranslateUp   ()->less(false); break;
 	case SDLK_RSHIFT:
 	case SDLK_LSHIFT:
 		{

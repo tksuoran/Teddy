@@ -24,6 +24,7 @@
 
 #include "Bender.h"
 #include "Teddy/Maths/Quaternion.h"
+#include "Teddy/Models/Model.h"
 using namespace Teddy::Behaviour;
 using namespace Teddy::Maths;
 using namespace Teddy::Models;

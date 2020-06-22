@@ -103,8 +103,8 @@ LWSceneParser *ObjectManager::getLWSceneParser(){
 
 
 bool ObjectManager::loadScene( void *ptr ){
-	scene->getModels().empty();
-	scene->getLights().empty();
+	scene->getModels().clear();
+	scene->getLights().clear();
 	//scene->remove( floor );
 	//delete floor;
 	floor = NULL;

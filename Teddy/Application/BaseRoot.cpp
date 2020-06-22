@@ -184,7 +184,7 @@ Options &BaseRoot::getScreenOptions(){
 }
 
 
-const char *BaseRoot::getOptString( char *key ){
+const char *BaseRoot::getOptString( const char *key ){
 	const char *val = "";
 	for( int i=1; i<argc; i++ ){
 		if( strcmp(argv[i],key) == 0 ){
@@ -197,7 +197,7 @@ const char *BaseRoot::getOptString( char *key ){
 }
 
 
-int BaseRoot::getOptInt( char *key ){
+int BaseRoot::getOptInt( const char *key ){
 	int i_val = 0;
 	for( int i=1; i<argc; i++ ){
 		if( strcmp(argv[i],key) == 0 ){
@@ -210,7 +210,7 @@ int BaseRoot::getOptInt( char *key ){
 }
 
 
-float BaseRoot::getOptFloat( char *key ){
+float BaseRoot::getOptFloat( const char *key ){
 	float f_val = 0;
 	for( int i=1; i<argc; i++ ){
 		if( strcmp(argv[i],key) == 0 ){
@@ -228,7 +228,7 @@ const char *BaseRoot::getArg( int i ){
 }
 
 
-bool BaseRoot::hasOpt( char *key ){
+bool BaseRoot::hasOpt( const char *key ){
 	for( int i=1; i<argc; i++ ){
 		if( strcmp(argv[i],key) == 0 ){
 			return true;

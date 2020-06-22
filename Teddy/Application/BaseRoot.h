@@ -48,10 +48,10 @@ public:
 	int                    getScreenHeight  ();
 	Teddy::MixIn::Options &getScreenOptions ();
 	Teddy::MixIn::Options &getAudioOptions  ();
-	bool                   hasOpt           ( char *key );
-	const char            *getOptString     ( char *key );
-	int                    getOptInt        ( char *key );
-	float                  getOptFloat      ( char *key );
+	bool                   hasOpt           ( const char *key );
+	const char            *getOptString     ( const char *key );
+	int                    getOptInt        ( const char *key );
+	float                  getOptFloat      ( const char *key );
 	const char            *getArg           ( int   i );
 
 protected:

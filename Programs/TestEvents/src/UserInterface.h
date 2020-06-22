@@ -90,8 +90,8 @@ public:
 protected:
     Camera   *camera;
 	Display  *display;
-	Area     *message;
-    Area     *menu;
+	Teddy::PhysicalComponents::Area *message;
+    Teddy::PhysicalComponents::Area *menu;
 };
 
 

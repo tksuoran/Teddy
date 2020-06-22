@@ -33,13 +33,13 @@ namespace Signals {
 
 
 //!  Functor
-template <typename R                        > class Functor0 {public:virtual R    operator()() = 0;};
-template <typename R,typename A1            > class Functor1 {public:virtual R    operator()( A1 a1 ) = 0;};
-template <typename R,typename A1,typename A2> class Functor2 {public:virtual R    operator()( A1 a1, A2 a2 ) = 0;};
+template <typename R                        > class Functor0 {public:virtual ~Functor0(){} virtual R    operator()() = 0;};
+template <typename R,typename A1            > class Functor1 {public:virtual ~Functor1(){} virtual R    operator()( A1 a1 ) = 0;};
+template <typename R,typename A1,typename A2> class Functor2 {public:virtual ~Functor2(){} virtual R    operator()( A1 a1, A2 a2 ) = 0;};
 #if 0
-                                              class FunctorV0{public:virtual void operator()() = 0;};
-template <typename A1                       > class FunctorV1{public:virtual void operator()( A1 a1 ) = 0;};
-template <typename A1,typename A2           > class FunctorV2{public:virtual void operator()( A1 a1, A2 a2 ) = 0;};
+                                              class FunctorV0{public:virtual ~FunctorV0(){} void operator()() = 0;};
+template <typename A1                       > class FunctorV1{public:virtual ~FunctorV1(){} void operator()( A1 a1 ) = 0;};
+template <typename A1,typename A2           > class FunctorV2{public:virtual ~FunctorV2(){} void operator()( A1 a1, A2 a2 ) = 0;};
 #endif
 
 
@@ -95,6 +95,7 @@ public:
 template <typename T,typename R> class TFunctor0 : public Functor0<R> {
 public:
 	TFunctor0( T *object, R(T::*operation)()):object(object),operation(operation){}
+    virtual ~TFunctor0(){}
 	virtual R operator()(){ return (*object.*operation)(); }
 protected:
 	T *object;
@@ -103,6 +104,7 @@ protected:
 template <typename T,typename R,typename A1> class TFunctor1 : public Functor1<R,A1> {
 public:
 	TFunctor1( T *object, R(T::*operation)( A1 )):object(object),operation(operation){}
+    virtual ~TFunctor1(){}
 	virtual R operator()( A1 a1 ){ return (*object.*operation)( a1 ); }
 protected:
 	T *object;
@@ -111,6 +113,7 @@ protected:
 template <typename T,typename R,typename A1,typename A2> class TFunctor2 : public Functor2<R,A1,A2> {
 public:
 	TFunctor2( T *object, R(T::*operation)( A1, A2 )):object(object),operation(operation){}
+    virtual ~TFunctor2(){}
 	virtual R operator()( A1 a1, A2 a2 ){ return (*object.*operation)( a1, a2 ); }
 protected:
 	T *object;

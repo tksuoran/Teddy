@@ -176,10 +176,10 @@ bool ObjectManager::addFloorAndBoxes(){
 	floor_box->setPosition(    0, -50,    0 );
 
 	Vector       zv = Vector(0,0,0);
-	const double k1 = rads( -0.5 );
-	const double k2 = rads(  0.5 );
-	const double k3 = rads( -0.4 );
-	const double k4 = rads(  0.4 );
+	//const double k1 = rads( -0.5 );
+	//const double k2 = rads(  0.5 );
+	  const double k3 = rads( -0.4 );
+	//const double k4 = rads(  0.4 );
 
 	st->add(  new ModelAnimator( box_obj2, zv, k3,  0,  0 )  );
 

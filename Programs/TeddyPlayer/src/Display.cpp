@@ -208,8 +208,8 @@ void Display::setHold( bool hold ){
 
 
 /*virtual*/ bool Display::joyAxis( const Event &e ){
-    const int &axis_id = e.item_id;
-    const int &value   = e.state;;
+    //const int &axis_id = e.item_id;
+    //const int &value   = e.state;;
 
 	float tra = -0.0003 * (float)(e.state); //32768.0;
 	float rad = rads(0.00001) * (float)(e.state); //32768.0;
@@ -253,10 +253,9 @@ void Display::setHold( bool hold ){
 /*virtual*/ bool Display::keyDown( const Event &e ){
 	Projection       *p            = getUserInterface()->getProjection   ();
 	LWSceneParser    *lwsc         = getObjectManager()->getLWSceneParser();
-    const SDL_keysym &key          = e.key;
 	static int        color_select = 0;
 
-	switch( key.sym ){
+	switch( e.key_sym ){
 	case SDLK_ESCAPE:
 	case 'q'        : exit(0); break;
 	case '1'        : {
@@ -309,19 +308,19 @@ void Display::setHold( bool hold ){
 	case 'p' : lwsc->play (); break;
 	case 's' : lwsc->stop (); break;
 	case 'r' : lwsc->reset(); break;
-	case SDLK_KP6 : {
+	case SDLK_KP_6 : {
 		float multiplier = lwsc->getMultiplier();
 		multiplier *= 1.1f;
 		lwsc->setMultiplier( multiplier );
 		break;
 		}
-	case SDLK_KP5 : {
+	case SDLK_KP_5 : {
 		float multiplier = lwsc->getMultiplier();
 		multiplier *= -1;
 		lwsc->setMultiplier( multiplier );
 		break;
 		}
-	case SDLK_KP4 : {
+	case SDLK_KP_4 : {
 		float multiplier = lwsc->getMultiplier();
 		multiplier /= 1.1f;
 		lwsc->setMultiplier( multiplier );
@@ -346,10 +345,10 @@ void Display::setHold( bool hold ){
 		break;
 		*/
 
-	case CONTROL_KEY_STRAFE_RIGHT: controller->getTranslateRight()->more(true); break;  
-	case CONTROL_KEY_STRAFE_LEFT : controller->getTranslateRight()->less(true); break;  
-	case CONTROL_KEY_STRAFE_UP   : controller->getTranslateUp   ()->more(true); break;  
-	case CONTROL_KEY_STRAFE_DOWN : controller->getTranslateUp   ()->less(true); break;  
+	case CONTROL_KEY_STRAFE_RIGHT: controller->getTranslateRight()->more(true); break;
+	case CONTROL_KEY_STRAFE_LEFT : controller->getTranslateRight()->less(true); break;
+	case CONTROL_KEY_STRAFE_UP   : controller->getTranslateUp   ()->more(true); break;
+	case CONTROL_KEY_STRAFE_DOWN : controller->getTranslateUp   ()->less(true); break;
 	case SDLK_F1 : p->getMaster()->setMode    ( Material::RENDER_MODE_POINT        ); break;
 	case SDLK_F2 : p->getMaster()->setMode    ( Material::RENDER_MODE_LINE         ); break;
 	case SDLK_F3 : p->getMaster()->setMode    ( Material::RENDER_MODE_FILL         ); break;
@@ -418,12 +417,11 @@ void Display::setHold( bool hold ){
 	the control is deactivated.
 */
 /*virtual*/ bool Display::keyUp( const Event &e ){
-    const SDL_keysym &key = e.key;
-	switch( key.sym ){
-	case CONTROL_KEY_STRAFE_RIGHT: controller->getTranslateRight()->more(false); break;  
-	case CONTROL_KEY_STRAFE_LEFT : controller->getTranslateRight()->less(false); break;  
-	case CONTROL_KEY_STRAFE_UP   : controller->getTranslateUp   ()->more(false); break;  
-	case CONTROL_KEY_STRAFE_DOWN : controller->getTranslateUp   ()->less(false); break;  
+	switch( e.key_sym ){
+	case CONTROL_KEY_STRAFE_RIGHT: controller->getTranslateRight()->more(false); break;
+	case CONTROL_KEY_STRAFE_LEFT : controller->getTranslateRight()->less(false); break;
+	case CONTROL_KEY_STRAFE_UP   : controller->getTranslateUp   ()->more(false); break;
+	case CONTROL_KEY_STRAFE_DOWN : controller->getTranslateUp   ()->less(false); break;
 	case SDLK_RSHIFT:
 	case SDLK_LSHIFT:
 		{

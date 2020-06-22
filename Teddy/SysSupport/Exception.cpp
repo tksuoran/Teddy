@@ -29,12 +29,12 @@ namespace Teddy      {
 namespace SysSupport {
 
 
-Exception::Exception( char *msg ){
+Exception::Exception( const char *msg ){
 	this->msg = msg;
 }
 
 
-char *Exception::tellMsg(){
+const char *Exception::tellMsg(){
 	return( msg );
 }
 

@@ -2,7 +2,7 @@
 /*!
 	\file
 	\brief  SDL surface conversion to OpenGL texture formats
-	\author Mattias Engdegård
+	\author Mattias Engdegï¿½rd
 	
 	Use, modification and distribution of this source is allowed
 	without limitation, warranty or liability of any kind.
@@ -59,8 +59,8 @@ SDL_Surface *conv_surf_gl( SDL_Surface *s, int want_alpha ){
 		(s->format->Rmask        == rmask) &&
 		(s->format->Gmask        == gmask) &&
 		(s->format->Bmask        == bmask) &&
-		(s->format->Amask        == amask) &&
-		!(s->flags & SDL_SRCCOLORKEY) )
+		(s->format->Amask        == amask) 
+		/*!(s->flags & SDL_SRCCOLORKEY)*/ )
 	{
 		//  No conversion needed
 		return s;
@@ -89,9 +89,10 @@ SDL_Surface *conv_surf_gl( SDL_Surface *s, int want_alpha ){
 	//  SDL sets the SDL_SRCALPHA flag on all surfaces with an
 	//  alpha channel. We need to clear that flag for the copy,
 	//  since SDL would attempt to alpha-blend our image otherwise */
-    if( want_alpha ){
-		SDL_SetAlpha( s, 0, 255 );
-    }
+    // SDL1: if( want_alpha ){
+	// SDL1: 	SDL_SetAlpha( s, 0, 255 );
+    // SDL1: }
+    SDL_SetSurfaceBlendMode(s, SDL_BLENDMODE_NONE); // SDL2
 
     //  Do the conversion. If the source surface has a colourkey, then it
     //  will be used in the blit. We use the fact that newly created software
@@ -127,6 +128,7 @@ SDL_Surface *load_gl_texture( const char *file ){
     if( s==NULL ){
 		return NULL;
 	}
-    return conv_surf_gl(s, s->format->Amask || (s->flags & SDL_SRCCOLORKEY));
+    //return conv_surf_gl(s, s->format->Amask || (s->flags & SDL_SRCCOLORKEY));
+    return conv_surf_gl(s, s->format->Amask);
 }
 

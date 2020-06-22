@@ -40,6 +40,7 @@ using namespace Teddy::Graphics;
 using namespace Teddy::Imports;
 using namespace Teddy::Models;
 using namespace Teddy::Scenes;
+using namespace Teddy::Maths;
 
 
 #define SPACE 5

@@ -200,10 +200,10 @@ float bez2( LWChannelKey *key0, LWChannelKey *key1, float time ){
 	float t0 = 0.0f;
 	float t1 = 1.0f;
 
-	x = key0->time  + ( key0->shape == SHAPE_BEZ2 ) ? key0->p3 : ( key1->time - key0->time ) / 3.0f;
+	x = (key0->time  + ( key0->shape == SHAPE_BEZ2 )) ? key0->p3 : ( key1->time - key0->time ) / 3.0f;
 	t = bez2_time     ( key0->time, x, key1->time + key1->p1, key1->time, key0->time, &t0, &t1 );
-	y = key0->value + ( key0->shape == SHAPE_BEZ2 ) ? key0->p4 : key0->p2 / 3.0f;
-	
+	y = (key0->value + ( key0->shape == SHAPE_BEZ2 )) ? key0->p4 : key0->p2 / 3.0f;
+
 	return bezier( key0->value, y, key1->p2 + key1->value, key1->value, t );
 }
 
@@ -227,7 +227,7 @@ float outgoing( LWChannelKey *prev, LWChannelKey *key0, LWChannelKey *key1 ){
 			a = ( 1.0f - key0->tension() ) * ( 1.0f + key0->continuity() ) * ( 1.0f + key0->bias() );
 			b = ( 1.0f - key0->tension() ) * ( 1.0f - key0->continuity() ) * ( 1.0f - key0->bias() );
 			d = key1->value - key0->value;
-			
+
 			if( prev ){
 				t   = ( key1->time - key0->time ) / ( key1->time - prev->time );
 				out = t * ( a * ( key0->value - prev->value ) + b * d );

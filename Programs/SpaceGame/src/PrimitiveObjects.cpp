@@ -37,7 +37,7 @@
 #include "Teddy/SysSupport/FileScan.h"
 
 #include "ObjectManager.h"
-using namespace Teddy::Imports;
+//using namespace Teddy::Imports;
 using namespace Teddy::Materials;
 using namespace Teddy::Models;
 using namespace Teddy::Scenes;

@@ -48,7 +48,7 @@ namespace Scenes {
 */
 class PostElement {
 public:
-	PostElement( char *filename );
+	PostElement( const char *filename );
     virtual ~PostElement();
 
 	void          insert( Ellipsoid  *e );

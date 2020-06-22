@@ -213,14 +213,12 @@ bool ControlProjection::joyBall( const Event &e ){
 
 //!  KeyListener interface implementation
 bool ControlProjection::keyDown( const Event &e ){
-	const SDL_keysym &key = e.key;
 	ActionManager    *am = getActionManager();
 	UserInterface    *ui = getUserInterface();
-	ObjectManager    *om = getObjectManager();
 	ModelCamera      *mc = getObjectManager()->getModelCamera     ();
 	PlayerController *pc = getObjectManager()->getPlayerController();
 
-	if( (key.mod & KMOD_ALT) != 0 ){
+	if( (e.key_mod & KMOD_ALT) != 0 ){
 		alt_down = true;
 	}
 
@@ -228,7 +226,7 @@ bool ControlProjection::keyDown( const Event &e ){
 		return true;
 	}
 
-	switch( key.sym ){
+	switch( e.key_sym ){
 	case SDLK_ESCAPE:
 	case 'q': am->quit(); break;
 
@@ -244,7 +242,7 @@ bool ControlProjection::keyDown( const Event &e ){
 	case SDLK_SPACE: toggleHold(); break;
 
 	case 'j': pc->getTranslateView()->toggle( Control::DAMPEN_MULTIPLY_M ); break;
-	
+
 	case '5': am->scannerCycle         (); break;
 	case 'd': am->blendOn              (); break;
 	case 'c': am->blendOff             (); break;
@@ -279,15 +277,15 @@ bool ControlProjection::keyDown( const Event &e ){
 	case SDLK_PAGEDOWN: pc->getTranslateView()->less( true ); break;
 	case SDLK_END:      pc->getTranslateView()->stop( true ); break;
 
-	case SDLK_KP5:      mc->getDistance()->setValue( 0 ); break;
-	case SDLK_KP1:      mc->getRoll    ()->less( true ); break;
-	case SDLK_KP2:      mc->getPitch   ()->less( true ); break;
-	case SDLK_KP3:      mc->getRoll    ()->more( true ); break;
-	case SDLK_KP4:      mc->getHeading ()->less( true ); break;
-	case SDLK_KP6:      mc->getHeading ()->more( true ); break;
-	case SDLK_KP7:      mc->getRoll    ()->less( true ); break;
-	case SDLK_KP8:      mc->getPitch   ()->more( true ); break;
-	case SDLK_KP9:      mc->getRoll    ()->more( true ); break;
+	case SDLK_KP_5:     mc->getDistance()->setValue( 0 ); break;
+	case SDLK_KP_1:     mc->getRoll    ()->less( true ); break;
+	case SDLK_KP_2:     mc->getPitch   ()->less( true ); break;
+	case SDLK_KP_3:     mc->getRoll    ()->more( true ); break;
+	case SDLK_KP_4:     mc->getHeading ()->less( true ); break;
+	case SDLK_KP_6:     mc->getHeading ()->more( true ); break;
+	case SDLK_KP_7:     mc->getRoll    ()->less( true ); break;
+	case SDLK_KP_8:     mc->getPitch   ()->more( true ); break;
+	case SDLK_KP_9:     mc->getRoll    ()->more( true ); break;
 
 	case SDLK_KP_MINUS: mc->getDistance()->more( true ); break;
 	case SDLK_KP_PLUS : mc->getDistance()->less( true ); break;
@@ -298,15 +296,14 @@ bool ControlProjection::keyDown( const Event &e ){
 
 
 bool ControlProjection::keyUp( const Event &e ){
-	const SDL_keysym &key = e.key;
 	PlayerController *pc = getObjectManager()->getPlayerController();
 	ModelCamera      *mc = getObjectManager()->getModelCamera     ();
 
-	if( (key.mod & KMOD_ALT) != 0 ){
+	if( (e.key_mod & KMOD_ALT) != 0 ){
 		alt_down = false;
 	}
 
-	switch( key.sym ){
+	switch( e.key_sym ){
 
 	case 'a':           pc->getWeaponFire   ()->more( false ); break;
 	case 'x':           pc->getRotateRight  ()->more( false ); break;
@@ -317,14 +314,14 @@ bool ControlProjection::keyUp( const Event &e ){
 	case SDLK_PAGEDOWN: pc->getTranslateView()->less( false ); break;
 	case SDLK_END:      pc->getTranslateView()->stop( false ); break;
 
-	case SDLK_KP1:      mc->getRoll    ()->less( false ); break;
-	case SDLK_KP2:      mc->getPitch   ()->less( false ); break;
-	case SDLK_KP3:      mc->getRoll    ()->more( false ); break;
-	case SDLK_KP4:      mc->getHeading ()->less( false ); break;
-	case SDLK_KP6:      mc->getHeading ()->more( false ); break;
-	case SDLK_KP7:      mc->getRoll    ()->less( false ); break;
-	case SDLK_KP8:      mc->getPitch   ()->more( false ); break;
-	case SDLK_KP9:      mc->getRoll    ()->more( false ); break;
+	case SDLK_KP_1:     mc->getRoll    ()->less( false ); break;
+	case SDLK_KP_2:     mc->getPitch   ()->less( false ); break;
+	case SDLK_KP_3:     mc->getRoll    ()->more( false ); break;
+	case SDLK_KP_4:     mc->getHeading ()->less( false ); break;
+	case SDLK_KP_6:     mc->getHeading ()->more( false ); break;
+	case SDLK_KP_7:     mc->getRoll    ()->less( false ); break;
+	case SDLK_KP_8:     mc->getPitch   ()->more( false ); break;
+	case SDLK_KP_9:     mc->getRoll    ()->more( false ); break;
 	case SDLK_KP_MINUS: mc->getDistance()->more( false ); break;
 	case SDLK_KP_PLUS : mc->getDistance()->less( false ); break;
 	default: break;

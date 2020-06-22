@@ -22,7 +22,10 @@
 */
 
 
+#include "Teddy/Models/Model.h"
+#include "Teddy/SysSupport/StdSDL.h"
 #include "Orbiter.h"
+
 using namespace Teddy::Behaviour;
 using namespace Teddy::Models;
 using namespace Teddy::Maths;

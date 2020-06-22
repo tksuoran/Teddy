@@ -67,7 +67,7 @@ namespace Graphics {
 
 
 
-bool View::pngScreenshot( char *filename ){
+bool View::pngScreenshot( const char *const filename ){
 #if defined( HAVE_LIB_PNG ) && !defined( USE_TINY_GL )
 	unsigned char  *data         = NULL;
 	png_structp     png_ptr      = NULL;

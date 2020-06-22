@@ -39,15 +39,15 @@ class LayoutConstraint;
 //!  Simple text label
 class Label : public Area {
 public:
-	Label( char *label );
+	Label( const char *label );
 
 	//  Area interface
 	virtual void  drawSelf();
-	void          setText( char *text );
-	char         *getText();
+	void          setText( const char *text );
+	const char   *getText();
 
 protected:
-	char *text;
+	const char *text;
 };
 
 

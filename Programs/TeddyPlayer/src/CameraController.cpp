@@ -58,7 +58,7 @@ void CameraController::adjustToScene(){
     float  max_size  = scene->getMaxObSize    ();
     float  max_dist  = scene->getMaxObDistance();
     float  scale     = max_dist + max_size;
-	float  damp_val  = 0.985f;
+	//float  damp_val  = 0.985f;
 	float  delta_val = scale / 80000.0f;
 	translate_up   ->setDelta( delta_val );
 	translate_right->setDelta( delta_val );

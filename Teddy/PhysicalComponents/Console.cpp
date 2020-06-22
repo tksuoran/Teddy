@@ -33,6 +33,7 @@
 #include "Teddy/Graphics/View.h"
 #include "Teddy/SysSupport/Messages.h"
 #include "Teddy/SysSupport/StdIO.h"
+#include "Teddy/SysSupport/StdSDL.h"
 #ifndef SWIG
 #include <cstdlib>
 using namespace std;
@@ -313,10 +314,10 @@ void Console::parse( const char *commandline ){
 	string new_line;
 	int    right_part;
 
-	switch( e.key.sym ){
+	switch( e.key_scancode ){
 
 	//  Editing
-	case SDLK_BACKSPACE:
+	case SDL_SCANCODE_BACKSPACE:
 		//  Kill prev char
 
 		if( cx>0 ){
@@ -324,7 +325,6 @@ void Console::parse( const char *commandline ){
 			cx--;
 		}else{  //  Also join with previous line
 			if( cy>0 ){
-					
 				cx = buffer_lines[cy-1]->size();
 				buffer_lines[cy-1]->append( *buffer_lines[cy] );
 				killLine( cy );
@@ -333,7 +333,7 @@ void Console::parse( const char *commandline ){
 		}
 		break;
 
-	case SDLK_DELETE:
+	case SDL_SCANCODE_DELETE:
 		//  Kill next char
 		if( (long)(cx)<(long)(buffer_lines[cy]->size()) ){
 			killChar( cx+1, cy );
@@ -348,9 +348,9 @@ void Console::parse( const char *commandline ){
 			}
 		}
 		break;
-								
-	// 	Newline									
-	case SDLK_RETURN:			
+
+	// 	Newline
+	case SDL_SCANCODE_RETURN:
 		insertLine( cy+1 );
 		cursorDown();
 		right_part = buffer_lines[cy-1]->size()-cx;
@@ -370,7 +370,7 @@ void Console::parse( const char *commandline ){
 		break;
 
 	//  Move cursor up / down
-	case SDLK_UP:
+	case SDL_SCANCODE_UP:
 		if( cy>0 ){
 			cy--;
 			if( topleft_y>cy ){
@@ -382,7 +382,7 @@ void Console::parse( const char *commandline ){
 			}
 		}
 		break;
-	case SDLK_DOWN:
+	case SDL_SCANCODE_DOWN:
         cursorDown();
 		right_part = buffer_lines[cy]->size()-cx;
 		if( right_part<0 ){
@@ -391,112 +391,34 @@ void Console::parse( const char *commandline ){
 		break;
 
 		//  Move cursor right / left
-	case SDLK_RIGHT:
+	case SDL_SCANCODE_RIGHT:
 		if( (long)(cx) < (long)(buffer_lines[cy]->size()) ){
 			cx++;
 		}
 		break;
 
-	case SDLK_LEFT:
+	case SDL_SCANCODE_LEFT:
 		if( cx>0 ){
 			cx--;
 			}
 		break;
 
 		//  Move cursor to start of / end of line
-	case SDLK_HOME:
+	case SDL_SCANCODE_HOME:
 		cx = 0;
 		break;
 
-	case SDLK_END:
+	case SDL_SCANCODE_END:
 		cx = buffer_lines[cy]->size();
 		break;
 
-	case SDLK_INSERT:
-	case SDLK_PAGEUP:
-	case SDLK_PAGEDOWN:
-	case SDLK_PAUSE:   //  ? Passthrough?
-	case SDLK_ESCAPE:  //  ?
-	case SDLK_TAB:     //  To next tab pos
-	case SDLK_CLEAR:   //  ? clear line ?
-	case SDLK_PRINT:
-	case SDLK_SYSREQ:
-	case SDLK_BREAK:
-	case SDLK_MENU:
-	case SDLK_POWER:
-	case SDLK_HELP:
-		break;
-
-		//  Modifiers
-	case SDLK_NUMLOCK:
-	case SDLK_CAPSLOCK:
-	case SDLK_SCROLLOCK:
-	case SDLK_RSHIFT:
-	case SDLK_LSHIFT:
-	case SDLK_RCTRL:
-	case SDLK_LCTRL:
-	case SDLK_RALT:
-	case SDLK_LALT:
-	case SDLK_RMETA:
-	case SDLK_LMETA:
-	case SDLK_LSUPER:
-	case SDLK_RSUPER:
-	case SDLK_MODE:
-		break;
-
-		//  Function keys
-	case SDLK_F1:
-	case SDLK_F2:
-	case SDLK_F3:
-	case SDLK_F4:
-	case SDLK_F5:
-	case SDLK_F6:
-	case SDLK_F7:
-	case SDLK_F8:
-	case SDLK_F9:
-	case SDLK_F10:
-	case SDLK_F11:
-	case SDLK_F12:
-	case SDLK_F13:
-	case SDLK_F14:
-	case SDLK_F15:
-		break;
-
-		//  Number keypad
-	case SDLK_KP0:
-	case SDLK_KP1:
-	case SDLK_KP2:
-	case SDLK_KP3:
-	case SDLK_KP4:
-	case SDLK_KP5:
-	case SDLK_KP6:
-	case SDLK_KP7:
-	case SDLK_KP8:
-	case SDLK_KP9:
-		break;
 
 		//  Insert character
 	default:
 		char buf[25];
-		unsigned int sym = e.key.unicode;
 
 		buf[1] = 0;
-		if( (sym & 0xff80) == 0 ) {
-			buf[0] = sym & 0x7f;
-		}else{
-			switch( sym ){
-			case 167: buf[0] = '§'; break;
-			case 196: buf[0] = 'Ä'; break;
-			case 197: buf[0] = 'Å'; break;
-			case 214: buf[0] = 'Ö'; break;
-			case 228: buf[0] = 'ä'; break;
-			case 229: buf[0] = 'å'; break;
-			case 246: buf[0] = 'ö'; break;
-			default:
-				sprintf( buf, " %d", sym );
-				break;
-			}
-		}
+        buf[0] = e.key_sym;
 
 		//  Insertion
 		old_line = *buffer_lines[cy];

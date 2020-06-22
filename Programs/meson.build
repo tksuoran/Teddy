@@ -1,0 +1,5 @@
+subdir('SpaceGame')
+subdir('TeddyPlayer')
+subdir('TestBasic')
+subdir('TestEvents')
+subdir('TestObjects')

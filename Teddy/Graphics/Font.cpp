@@ -58,8 +58,8 @@ Font::Font(){
         tx[i] = Vector2( 255-8, 0 );
     }
     for( i=0; i<4; i++ ){
-        tsize[4] = Vector2( 0.0f, 0.0f );
-        psize[4] = Vector2( 0.0f, 0.0f );
+        tsize[i] = Vector2( 0.0f, 0.0f );
+        psize[i] = Vector2( 0.0f, 0.0f );
     }
     pos = Vector2( 0.0f, 0.0f );
     texture = NULL;
@@ -74,20 +74,14 @@ Font::Font(){
 	\param fname Name of the datafile containing font definition as raw 256x256 8bit alpha values
 */
 Font::Font( const char *fname, int mode ):mode(mode){
-	unsigned char array[10][21] = {
+	unsigned char array[5][21] = {
 //		 0         1         2
 //		 012345678901234567890
 		"!\"#$%&'()*+,-./01234", // 0 
 		"56789:;<=>?@ABCDEFGH",  // 1
 		"IJKLMNOPQRSTUVWXYZ[\\", // 2
 		"]^_`abcdefghijklmnop",  // 3
-		"qrstuvwxyz{|}~ ¡¢£¤¥",  // 4
-		"¦§¨©ª«¬­®¯°±²³´µ¶·¸¹",  // 5
-//      "º»¼½¾¿ÀÁÂÃÄÅÆÇÈÉÊËÌÍ",  // 6  Generates boundchecker warning
-		"º»¼½¾?ÀÁÂÃÄÅÆÇÈÉÊËÌÍ",  // 6
-		"ÎÏĞÑÒÓÔÕÖ×ØÙÚÛÜİŞßàá",  // 7
-		"âãäåæçèéêëìíîïğñòóôõ",  // 8
-		"ö÷øùúûüışÿ??????????",  // 9
+		"qrstuvwxyz{|}~      "   // 4
 	};
 	int row;
 	int col;

@@ -58,7 +58,7 @@ const int View::OPT_FONT_FIX                = (1ul<<5ul);
 
 
 //!  Displaying surface
-/*virtual*/ void View::displayPs( char *filename ){
+/*virtual*/ void View::displayPs( const char *filename ){
 #	if !defined( USE_TINY_GL )
     //  Initialize feedback
 	long     max_len = 1024*1024;
@@ -104,7 +104,7 @@ const int View::OPT_FONT_FIX                = (1ul<<5ul);
 #	if defined( USE_TINY_GL )
 	sdl_swgl_SwapBuffers();
 #	else
-	SDL_GL_SwapBuffers();
+	SDL_GL_SwapWindow(sdl_window);
 #	endif
 
 	//check();
@@ -166,20 +166,6 @@ options(options)
 	clear       = true;
 	clear_color = Color( 0.5f, 0.5, 0.5f, 1.0f );
 
-	const SDL_VideoInfo *info = NULL;
-	int                  bpp  = 0;  /* Color depth in bits of our window. */	 
-
-	/* Let's get some video information. */
-	info = SDL_GetVideoInfo();
-	if( info==NULL ){
-		fmsg( M_GL, "SDL_getVideoInfo() failed" );
-	}
-	if( info->vfmt == NULL ){
-		fmsg( M_GL, "SDL_getVideoInfo() failed - no format?!" );
-	}
-
-	bpp = info->vfmt->BitsPerPixel;
-
 #	if defined( USE_TINY_GL )
 	/* Set video mode */
 	sdl_surface = SDL_SetVideoMode(width, height, 16, SDL_DOUBLEBUF);
@@ -207,24 +193,24 @@ options(options)
 	 * the standard 2D blitting setup.
 	 */
 	msg( M_INIT, "SDL_GL_SetAttribute..." );
-	SDL_GL_SetAttribute( SDL_GL_RED_SIZE,	   5 );
-	SDL_GL_SetAttribute( SDL_GL_GREEN_SIZE,    5 );
-	SDL_GL_SetAttribute( SDL_GL_BLUE_SIZE,	   5 );
-	SDL_GL_SetAttribute( SDL_GL_DEPTH_SIZE,   16 );
+	SDL_GL_SetAttribute( SDL_GL_RED_SIZE,	   8 );
+	SDL_GL_SetAttribute( SDL_GL_GREEN_SIZE,    8 );
+	SDL_GL_SetAttribute( SDL_GL_BLUE_SIZE,	   8 );
+	SDL_GL_SetAttribute( SDL_GL_DEPTH_SIZE,   24 );
 //	SDL_GL_SetAttribute( SDL_GL_DEPTH_SIZE,   32 );
 	SDL_GL_SetAttribute( SDL_GL_DOUBLEBUFFER,  1 );
 
-	unsigned long sdl_flags = SDL_OPENGL;
-	if( options.isDisabled(OPT_FRAME)      ){ sdl_flags |= SDL_NOFRAME;    }
-	if( options.isEnabled (OPT_FULLSCREEN) ){ sdl_flags |= SDL_FULLSCREEN; }
+	Uint32 sdl_flags = SDL_WINDOW_SHOWN | SDL_WINDOW_OPENGL;
+	if( options.isDisabled(OPT_FRAME)      ){ sdl_flags |= SDL_WINDOW_BORDERLESS;    }
+	if( options.isEnabled (OPT_FULLSCREEN) ){ sdl_flags |= SDL_WINDOW_FULLSCREEN_DESKTOP; }
 
 	/*
 	 * Set the video mode
 	 */
-	msg( M_INIT, "SDL_SetVideoMode( %d, %d, %d, 0x%x )...", width, height, bpp, sdl_flags );
-	sdl_surface = SDL_SetVideoMode( width, height, bpp, sdl_flags );
-	if( sdl_surface == 0 ) {
-		/* 
+	msg( M_INIT, "SDL_CreateWindow( %d, %d, 0x%x )...", width, height, sdl_flags );
+	sdl_window = SDL_CreateWindow("Teddy", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, sdl_flags);
+	if( sdl_window == NULL ) {
+		/*
 		 * This could happen for a variety of reasons,
 		 * including DISPLAY not being set, the specified
 		 * resolution not being available, etc.
@@ -234,13 +220,14 @@ options(options)
 		msg( M_INIT, "Video mode ok..." );
 	}
 
+    sdl_gl_context = SDL_GL_CreateContext(sdl_window);
+    SDL_GL_MakeCurrent(sdl_window, sdl_gl_context);
+
 	int gl_depth_size;
 	SDL_GL_GetAttribute( SDL_GL_DEPTH_SIZE,   &gl_depth_size );
 
 	msg( M_INIT, "Got %d bits for depth buffer", gl_depth_size );
 #	endif
-
-	SDL_WM_SetCaption( "Teddy", NULL );
 
 	if( Font::default_font == &Font::dummy_font ){
 		if( options.isEnabled (OPT_FONT_FIX) ){
@@ -702,8 +689,8 @@ void View::setFogEnd( float end ){
 
 
 //!  Access sdl surface directly
-SDL_Surface *View::getSurface(){
-	return sdl_surface;
+SDL_Window *View::getWindow(){
+	return sdl_window;
 }
 
 
@@ -712,13 +699,13 @@ void View::printExtensions(){
 
 //!  Is the extension supported?
 bool View::hasExtension( const char *ext_name ){
-	int   ext_name_len = strlen( ext_name );	
-	char *p            = getExtensions();
+	int   ext_name_len = strlen( ext_name );
+	const char *p = getExtensions();
 	if( p == NULL ){
         return false;
 	}
-	char *end          = p + strlen( p );
-	
+	const char *end = p + strlen( p );
+
 	while( p < end ){
 		int n = strcspn( p, " " );
 		if( (ext_name_len            == n ) && 
