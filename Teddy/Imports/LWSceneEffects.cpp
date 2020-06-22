@@ -1,8 +1,8 @@
 
 /*
 	TEDDY - General graphics application library
-	Copyright (C) 1999-2002  Timo Suoranta
-	tksuoran@cc.helsinki.fi
+	Copyright (C) 1999-2020  Timo Suoranta
+	tksuoran@gmail.com
 
 	This library is free software; you can redistribute it and/or
 	modify it under the terms of the GNU Lesser General Public
@@ -17,8 +17,6 @@
 	You should have received a copy of the GNU Lesser General Public
 	License along with this library; if not, write to the Free Software
 	Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-
-	$Id: LWSceneEffects.cpp,v 1.1 2002/02/16 12:41:39 tksuoran Exp $
 */
 
 
@@ -78,7 +76,7 @@ void LWSceneParser::FGAlphaImage(){
 
 
 /*
-	FGDissolve <percentage> ¦ (envelope)
+	FGDissolve <percentage> ï¿½ (envelope)
 
 	example:  FGDissolve 0.750000
 
@@ -275,7 +273,7 @@ void LWSceneParser::FogType(){
 
 
 /*
-	Additional:  FogMinDist <Distance> ¦ (envelope)
+	Additional:  FogMinDist <Distance> ï¿½ (envelope)
 
 	example:  FogMinDist 25.000000
 
@@ -291,7 +289,7 @@ void LWSceneParser::FogMinDist(){
 
 
 /*
-	Additional:  FogMaxDist <Distance> ¦ (envelope)
+	Additional:  FogMaxDist <Distance> ï¿½ (envelope)
 
 	example:  FogMaxDist 350.00000
 
@@ -307,7 +305,7 @@ void LWSceneParser::FogMaxDist(){
 
 
 /*
-	Additional:  FogMinAmount <percentage> ¦ (envelope)
+	Additional:  FogMinAmount <percentage> ï¿½ (envelope)
 
 	example:  FogMinAmount 0.250000
 
@@ -320,7 +318,7 @@ void LWSceneParser::FogMinAmount(){
 
 
 /*
-	Additional:  FogMaxAmount <percentage> ¦ (envelope)
+	Additional:  FogMaxAmount <percentage> ï¿½ (envelope)
 
 	example:  FogMaxAmount 0.750000
 
@@ -404,7 +402,7 @@ void LWSceneParser::AnimatedDither(){
 
 
 /*
-	Saturation <percentage> ¦ (envelope)
+	Saturation <percentage> ï¿½ (envelope)
 
 	example:  Saturation 0.350000
 
@@ -440,7 +438,7 @@ void LWSceneParser::GlowEffect(){
 
 
 /*
-	Additional:  GlowIntensity <percentage> ¦ (envelope)
+	Additional:  GlowIntensity <percentage> ï¿½ (envelope)
 
 	example:  GlowIntensity 1.000000
 
@@ -453,7 +451,7 @@ void LWSceneParser::GlowIntensity(){
 
 
 /*
-	Additional:  GlowRadius <pixels> ¦ (envelope)
+	Additional:  GlowRadius <pixels> ï¿½ (envelope)
 
 	example:  GlowRadius 8.000000
 

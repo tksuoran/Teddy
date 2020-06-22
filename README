@@ -1,3 +1,12 @@
+This is my first C++ and my first OpenGL program.
+
+Back in late 1990s C++ was a different language and
+OpenGL was fixed function.
+
+2020 update: I pulled the sources from sources from sourceforge,
+updated build system to meson, migrated from sdl to sdl2 and
+fixed obvious bugs pointed out my C++ compiler.
+
 
 ---- Teddy 1.80 ----
 
@@ -62,4 +71,4 @@ Programs.
 See http://teddy.sf.net for more information about Teddy.
 
 
--- Timo Suoranta -- tksuoran@cc.helsinki.fi --
+-- Timo Suoranta -- tksuoran@gmail.com --

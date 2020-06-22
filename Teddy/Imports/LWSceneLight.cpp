@@ -1,8 +1,8 @@
 
 /*
 	TEDDY - General graphics application library
-	Copyright (C) 1999-2002  Timo Suoranta
-	tksuoran@cc.helsinki.fi
+	Copyright (C) 1999-2020  Timo Suoranta
+	tksuoran@gmail.com
 
 	This library is free software; you can redistribute it and/or
 	modify it under the terms of the GNU Lesser General Public
@@ -17,8 +17,6 @@
 	You should have received a copy of the GNU Lesser General Public
 	License along with this library; if not, write to the Free Software
 	Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-
-	$Id: LWSceneLight.cpp,v 1.1 2002/02/16 12:41:39 tksuoran Exp $
 */
 
 
@@ -68,7 +66,7 @@ void LWSceneParser::AmbientColor(){
 /*
 	\todo envelope support
 
-	AmbientIntensity <percentage> ¦ (envelope)
+	AmbientIntensity <percentage> ï¿½ (envelope)
 
 	example:  AmbIntensity 0.250000
 
@@ -183,7 +181,7 @@ void LWSceneParser::ShowLight(){
 
 
 /*
-	LightName Light ¦ <string>
+	LightName Light ï¿½ <string>
 
 	example:  LightName HeadLight
 
@@ -275,7 +273,7 @@ void LWSceneParser::LightRange(){
 }
 
 /*
-	LightConeAngle <angle> ¦ (envelope)
+	LightConeAngle <angle> ï¿½ (envelope)
 
 	example:  LightConeAngle 30.000000
 
@@ -296,7 +294,7 @@ void LWSceneParser::LightConeAngle(){
 /*
 	\todo support envelope
 
-	LightEdgeAngle <angle> ¦ (envelope)
+	LightEdgeAngle <angle> ï¿½ (envelope)
 
 	example:  LightEdgeAngle 5.000000
 
@@ -316,7 +314,7 @@ void LWSceneParser::LightEdgeAngle(){
 
 
 /*
-	LightIntensity <percentage> ¦ (envelope)
+	LightIntensity <percentage> ï¿½ (envelope)
 
 	example:  LgtIntensity 0.750000
 
@@ -335,7 +333,7 @@ void LWSceneParser::LightIntensity(){
 }
 
 /*
-	Falloff <percentage> ¦ (envelope)
+	Falloff <percentage> ï¿½ (envelope)
 
 	example:  Falloff 0.350000
 
@@ -411,7 +409,7 @@ void LWSceneParser::LensFlare(){
 /*
 	\todo support envelope
 
-	Additional:  FlareIntensity <percentage> ¦ (envelope)
+	Additional:  FlareIntensity <percentage> ï¿½ (envelope)
 
 	example:  FlareIntensity 0.750000
 
@@ -430,7 +428,7 @@ void LWSceneParser::FlareIntensity(){
 /*
 	\todo support envelope
 
-	Additional:  FlareDissolve <percentage> ¦ (envelope)
+	Additional:  FlareDissolve <percentage> ï¿½ (envelope)
 
 	example:  FlareDissolve 0.350000
 

@@ -1,8 +1,8 @@
 
 /*
 	TEDDY - General graphics application library
-	Copyright (C) 1999-2002  Timo Suoranta
-	tksuoran@cc.helsinki.fi
+	Copyright (C) 1999-2020  Timo Suoranta
+	tksuoran@gmail.com
 
 	This library is free software; you can redistribute it and/or
 	modify it under the terms of the GNU Lesser General Public
@@ -17,8 +17,6 @@
 	You should have received a copy of the GNU Lesser General Public
 	License along with this library; if not, write to the Free Software
 	Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-
-	$Id: LWSceneCamera.cpp,v 1.1 2002/02/16 12:41:39 tksuoran Exp $
 */
 
 
@@ -127,7 +125,7 @@ void LWSceneParser::CameraMotion(){
 
 
 /*
-	ZoomFactor <float> ¦ (envelope)
+	ZoomFactor <float> ï¿½ (envelope)
 
 	example:  ZoomFactor 3.200000
 
@@ -166,7 +164,7 @@ void LWSceneParser::MotionBlur(){
 
 
 /*
-	Additional:  BlurLength <percentage> ¦ (envelope)
+	Additional:  BlurLength <percentage> ï¿½ (envelope)
 
 	example:  BlurLength 0.500000
 
@@ -196,7 +194,7 @@ void LWSceneParser::DepthofField(){
 
 
 /*
-	Additional:  FocalDistance <Distance> ¦ (envelope)
+	Additional:  FocalDistance <Distance> ï¿½ (envelope)
 
 	example:  FocalDistance 25.0000
 
@@ -209,7 +207,7 @@ void LWSceneParser::FocalDistance(){
 
 
 /*
-	Additional:  LensFStop <float> ¦ (envelope)
+	Additional:  LensFStop <float> ï¿½ (envelope)
 
 	example:  LensFStop 4.000000
 

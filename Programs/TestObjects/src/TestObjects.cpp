@@ -2,7 +2,7 @@
 /*
 	TEDDY - General graphics application library
 	Copyright (C) 1999, 2000, 2001	Timo Suoranta
-	tksuoran@cc.helsinki.fi
+	tksuoran@gmail.com
 
 	This library is free software; you can redistribute it and/or
 	modify it under the terms of the GNU Lesser General Public

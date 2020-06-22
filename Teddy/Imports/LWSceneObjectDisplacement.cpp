@@ -1,8 +1,8 @@
 
 /*
 	TEDDY - General graphics application library
-	Copyright (C) 1999-2002  Timo Suoranta
-	tksuoran@cc.helsinki.fi
+	Copyright (C) 1999-2020  Timo Suoranta
+	tksuoran@gmail.com
 
 	This library is free software; you can redistribute it and/or
 	modify it under the terms of the GNU Lesser General Public
@@ -17,8 +17,6 @@
 	You should have received a copy of the GNU Lesser General Public
 	License along with this library; if not, write to the Free Software
 	Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-
-	$Id: LWSceneObjectDisplacement.cpp,v 1.1 2002/02/16 12:41:39 tksuoran Exp $
 */
 
 
@@ -35,9 +33,9 @@ namespace Imports {
 
 
 /*
-	DisplacementMap <mapping type> ¦ Clip Map <mapping type> 
+	DisplacementMap <mapping type> ï¿½ Clip Map <mapping type> 
 
-	DisplacementMap <projection type> ¦ <procedural texture>
+	DisplacementMap <projection type> ï¿½ <procedural texture>
 
 	The DisplacementMap function is the first line of a
 	Displacement Map segment. It provides the mapping type
@@ -74,7 +72,7 @@ namespace Imports {
 			Fractal Bumps: 
 				TextureInt0 <int> - Frequencies
 
-	- ClipMap <projection type> ¦ <procedural texture>
+	- ClipMap <projection type> ï¿½ <procedural texture>
 
 	The ClipMap function is the first line of a Clip
 	Map segment. It provides the mapping type and selection.
@@ -374,7 +372,7 @@ void LWSceneParser::TextureFloat(){
   functions.
 
 
-		DisplacementMap ¦ ClipMap *
+		DisplacementMap ï¿½ ClipMap *
 		TextureImage *  (Image Mapping only)
 		TextureFlags *
 		TextureAxis *  (Image Mapping only)
@@ -382,7 +380,7 @@ void LWSceneParser::TextureFloat(){
 		TextureCenter
 		TextureFalloff
 		TextureVelocity
-		TextureAmplitude ¦  TextureValue
+		TextureAmplitude ï¿½  TextureValue
 		TextureInt(index)   (Multiple instances possible) 
 		TextureFloat(index)   (Multiple instances possible)
 */
